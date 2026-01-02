@@ -10,7 +10,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
-    <title>@yield('title', 'Hotel Romance - Sistema Administrativo')</title>
+    <title>@yield('title', 'Hotel Jardín del Sol - Sistema Administrativo')</title>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,23 +25,24 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
-        /* Paleta de colores azul Hotel Romance */
+        /* Paleta de colores azul Hotel Jardin del Sol */
         :root {
-            --primary-color: #88A6D3;      /* Azul principal */
-            --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-            --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-            --accent-color: #4A73B8;       /* Azul de acento oscuro */
-            --light-blue: #C8D7ED;         /* Azul muy claro */
-            --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-            --hover-bg: #88A6D3;           /* Color hover */
-            --gradient-start: #88A6D3;     /* Inicio gradiente */
-            --gradient-end: #6B8CC7;       /* Fin gradiente */
+            --primary-color: #E98672;        /* Coral principal */
+            --secondary-color: #D4735E;      /* Coral más oscuro */
+            --tertiary-color: #F2A898;       /* Coral más claro */
+            --accent-color: #C85A47;         /* Coral de acento oscuro */
+            --light-warm: #FEF9CB;           /* Amarillo crema muy claro */
+            --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+            --hover-bg: #E98672;             /* Color hover */
+            --gradient-start: #E98672;       /* Inicio gradiente */
+            --gradient-end: #D4735E;         /* Fin gradiente */
+            --warm-accent: #F7E98E;          /* Amarillo suave para acentos */
         }
         
         /* Sidebar personalizado con estructura mejorada */
         .sidebar-menu {
-            background: linear-gradient(180deg, #f4f8fc 0%, #eaf3ff 100%);
-            border-right: 2px solid #e1ecf7;
+            background: linear-gradient(180deg, #FFFDF5 0%, #FEF9CB 100%);
+            border-right: 2px solid #F2A898;
             height: 100vh;
             max-height: 100vh;
             display: flex;
@@ -73,12 +74,12 @@
         }
 
         .sidebar-content::-webkit-scrollbar-thumb {
-            background: #88A6D3;
+            background: #E98672;  /* ← Cambiar de #88A6D3 a #E98672 */
             border-radius: 2px;
         }
 
         .sidebar-content::-webkit-scrollbar-thumb:hover {
-            background: #6B8CC7;
+            background: #D4735E;  /* ← Cambiar de #6B8CC7 a #D4735E */
         }
         
         /* Hover effects personalizados */
@@ -87,10 +88,10 @@
         }
 
         .sidebar-item:hover {
-            background: linear-gradient(135deg, #88A6D3, #6B8CC7);
+            background: linear-gradient(135deg, #E98672, #D4735E);
             color: white;
             transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         }
 
         .sidebar-item:hover span,
@@ -100,11 +101,10 @@
         
         /* Item seleccionado */
         .selected-item {
-            background: linear-gradient(135deg, #88A6D3, #6B8CC7);
+            background: linear-gradient(135deg, #E98672, #D4735E);
             color: white;
-            border-left: 4px solid #4A73B8;
-            box-shadow: 0 2px 8px rgba(136, 166, 211, 0.2);
-            transform: translateX(2px);
+            border-left: 4px solid #C85A47;
+            box-shadow: 0 2px 8px rgba(233, 134, 114, 0.2);
         }
 
         .selected-item span,
@@ -119,12 +119,12 @@
         
         /* Efectos adicionales */
         .hotel-logo {
-            background: linear-gradient(135deg, #88A6D3, #4A73B8);
-            box-shadow: 0 4px 15px rgba(136, 166, 211, 0.4);
+            background: linear-gradient(135deg, #E98672, #C85A47);
+            box-shadow: 0 4px 15px rgba(233, 134, 114, 0.4);
         }
-        
+
         .hotel-title {
-            background: linear-gradient(135deg, #88A6D3, #4A73B8);
+            background: linear-gradient(135deg, #E98672, #C85A47);
         }
         
         /* Navbar personalizado */
@@ -179,9 +179,12 @@
         <div class="sidebar-header">
             <a href="{{ route('dashboard') }}" class="flex items-center">
                 <div class="w-10 h-10 rounded-full hotel-logo flex items-center justify-center text-white font-bold text-xl mr-3">
-                    ⭐
+                    🌸
                 </div>
-                <h2 class="font-bold text-2xl">HOTEL <span class="hotel-title text-white px-2 rounded-md">ROMANCE</span></h2>
+                <div class="flex flex-col">
+                    <h2 class="font-bold text-xl text-gray-800">HOTEL</h2>
+                    <span class="hotel-title text-white px-2 rounded-md text-sm font-semibold -mt-1">JARDÍN DEL SOL</span>
+                </div>
             </a>
         </div>
         
@@ -331,7 +334,7 @@
                     <button type="button" class="dropdown-toggle flex items-center">
                         <div class="flex-shrink-0 w-10 h-10 relative">
                             <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold">
+                                <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold" style="background: linear-gradient(to right, #E98672, #D4735E);">
                                     {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 1)) }}
                                 </div>
                                 <div class="top-0 left-7 absolute w-3 h-3 bg-green-400 border-2 border-white rounded-full animate-ping"></div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Agregar Comprobante SUNAT - Hotel Romance')
+@section('title', 'Agregar Comprobante SUNAT - Hotel Jardín del Sol')
 
 @section('content')
 
@@ -26,17 +26,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
-        /* Paleta de colores azul Hotel Romance */
+        /* Paleta de colores Hotel Jardín del Sol */
         :root {
-            --primary-color: #88A6D3; /* Azul principal */
-            --secondary-color: #6B8CC7; /* Azul secundario más oscuro */
-            --tertiary-color: #A5BFDB; /* Azul terciario más claro */
-            --accent-color: #4A73B8; /* Azul de acento oscuro */
-            --light-blue: #C8D7ED; /* Azul muy claro */
-            --sidebar-bg: #f4f8fc; /* Fondo sidebar azul muy suave */
-            --hover-bg: #88A6D3; /* Color hover */
-            --gradient-start: #88A6D3; /* Inicio gradiente */
-            --gradient-end: #6B8CC7; /* Fin gradiente */
+            --primary-color: #E98672;        /* Coral principal */
+            --secondary-color: #D4735E;      /* Coral más oscuro */
+            --tertiary-color: #F2A898;       /* Coral más claro */
+            --accent-color: #C85A47;         /* Coral de acento oscuro */
+            --light-blue: #FEF9CB;           /* Crema muy claro */
+            --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+            --hover-bg: #E98672;             /* Color hover */
+            --gradient-start: #E98672;       /* Inicio gradiente */
+            --gradient-end: #D4735E;         /* Fin gradiente */
         }
 
         /* Contenedor principal del formulario*/
@@ -44,8 +44,8 @@
             background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
             border-radius: 1rem;
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(136, 166, 211, 0.1);
-            border: 1px solid rgba(136, 166, 211, 0.2);
+            box-shadow: 0 4px 20px rgba(233, 134, 114, 0.1);
+            border: 1px solid rgba(233, 134, 114, 0.2);
         }
 
         /* Estilos para inputs */
@@ -59,7 +59,7 @@
 
         .input-field:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+            box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
             outline: none;
             background-color: white;
         }
@@ -68,13 +68,12 @@
             border-color: var(--tertiary-color);
         }
 
-        /* Botón principal */
         .btn-romance {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             transition: all 0.3s ease;
             color: white;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 2px 8px rgba(233, 134, 114, 0.3);
             border-radius: 0.5rem;
             padding: 0.75rem 1.5rem;
         }
@@ -82,10 +81,9 @@
         .btn-romance:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+            box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
         }
 
-        /* Botón secundario (Cancelar) */
         .btn-secondary {
             background: white;
             color: var(--accent-color);
@@ -118,7 +116,7 @@
             padding: 1.5rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 16px rgba(233, 134, 114, 0.3);
         }
 
         /* Mensajes de error */
@@ -142,7 +140,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.25rem;
-            box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         }
 
         /* Animación sutil para el contenedor */
@@ -163,8 +161,8 @@
 
         /* Estilos para los tips informativos */
         .info-tip {
-            background: rgba(136, 166, 211, 0.05);
-            border: 1px solid rgba(136, 166, 211, 0.2);
+            background: rgba(233, 134, 114, 0.05);
+            border: 1px solid rgba(233, 134, 114, 0.2);
             border-radius: 0.75rem;
             padding: 1rem;
         }
@@ -184,13 +182,14 @@
             padding: 1rem;
             text-align: center;
             transition: all 0.3s ease;
-            background: rgba(136, 166, 211, 0.05);
+            background: rgba(233, 134, 114, 0.05);
         }
 
         .file-input:hover {
             border-color: var(--primary-color);
-            background: rgba(136, 166, 211, 0.1);
+            background: rgba(233, 134, 114, 0.1);
         }
+
     </style>
 </head>
 

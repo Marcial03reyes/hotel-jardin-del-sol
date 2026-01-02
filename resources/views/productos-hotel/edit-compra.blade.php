@@ -9,7 +9,7 @@
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                         <i class='bx bx-cleaning mr-2'></i>
                         Productos Hotel
                     </a>
@@ -17,7 +17,7 @@
                 <li>
                     <div class="flex items-center">
                         <i class='bx bx-chevron-right text-gray-400'></i>
-                        <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">
+                        <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" class="ml-1 text-sm font-medium text-gray-700 transition-colors md:ml-2" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                             {{ $producto->nombre }}
                         </a>
                     </div>
@@ -37,7 +37,7 @@
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">Editar Compra</h1>
                     <p class="text-gray-600 mt-1">
-                        Producto: <span class="font-semibold text-blue-600">{{ $producto->nombre }}</span>
+                        Producto: <span class="font-semibold" style="color: #E98672;">{{ $producto->nombre }}</span>
                     </p>
                     <p class="text-gray-500 text-sm mt-1">
                         Compra del {{ $compra->fecha_compra ? $compra->fecha_compra->format('d/m/Y') : 'Sin fecha' }} 
@@ -177,9 +177,9 @@
                                 S/ {{ number_format($compra->cantidad * $compra->precio_unitario, 2) }}
                             </span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-blue-50 rounded border border-blue-200">
-                            <span class="text-sm font-medium text-blue-600">Total Nuevo:</span>
-                            <span id="total-compra" class="text-lg font-bold text-blue-700">
+                        <div class="flex items-center justify-between p-3 rounded border" style="background-color: #FEF9CB; border-color: #F2A898;">
+                            <span class="text-sm font-medium" style="color: #C85A47;">Total Nuevo:</span>
+                            <span id="total-compra" class="text-lg font-bold" style="color: #C85A47;">
                                 S/ {{ number_format($compra->cantidad * $compra->precio_unitario, 2) }}
                             </span>
                         </div>
@@ -188,14 +188,14 @@
                 </div>
 
                 <!-- Información de la compra -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div class="border rounded-lg p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <i class='bx bx-info-circle text-blue-400 text-xl'></i>
+                            <i class='bx bx-info-circle text-xl' style="color: #E98672;"></i>
                         </div>
                         <div class="ml-3">
-                            <h4 class="text-sm font-medium text-blue-800 mb-2">Información de la compra</h4>
-                            <div class="text-sm text-blue-700 space-y-1">
+                            <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Información de la compra</h4>
+                            <div class="text-sm space-y-1" style="color: #C85A47;">
                                 <p>• <strong>Fecha de registro:</strong> {{ $compra->created_at ? $compra->created_at->format('d/m/Y H:i') : 'No disponible' }}</p>
                                 <p>• <strong>Última modificación:</strong> {{ $compra->updated_at ? $compra->updated_at->format('d/m/Y H:i') : 'No disponible' }}</p>
                                 <p>• Al editar esta compra, se recalcularán automáticamente las estadísticas del producto</p>
@@ -212,7 +212,10 @@
                         Cancelar
                     </a>
                     <button type="submit" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            class="inline-flex items-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                            style="background-color: #E98672;"
+                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                            onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-save mr-2'></i>
                         Actualizar Compra
                     </button>
@@ -239,11 +242,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Cambiar color si es diferente al original
         const totalOriginal = {{ $compra->cantidad * $compra->precio_unitario }};
         if (Math.abs(total - totalOriginal) > 0.01) {
-            totalElement.classList.add('text-orange-700');
-            totalElement.classList.remove('text-blue-700');
+            totalElement.style.color = '#f59e0b'; // Naranja para cambios
         } else {
-            totalElement.classList.add('text-blue-700');
-            totalElement.classList.remove('text-orange-700');
+            totalElement.style.color = '#C85A47'; // Coral para normal
         }
     }
 

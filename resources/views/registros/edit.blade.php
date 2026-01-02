@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Registro' . $estadia->id_estadia . ' - Hotel Romance')
+@section('title', 'Editar Registro' . $estadia->id_estadia . ' - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3;      /* Azul principal */
-        --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-        --accent-color: #4A73B8;       /* Azul de acento oscuro */
-        --light-blue: #C8D7ED;         /* Azul muy claro */
-        --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3;           /* Color hover */
-        --gradient-start: #88A6D3;     /* Inicio gradiente */
-        --gradient-end: #6B8CC7;       /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .form-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
     }
-    
+
     .input-field:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         outline: none;
     }
     
@@ -89,7 +89,7 @@
 
     /* Información adicional con tema azul */
     .info-box {
-        background-color: #f0f7ff;
+        background-color: var(--sidebar-bg);
         border-color: var(--light-blue);
     }
 
@@ -103,7 +103,7 @@
 
     /* Campos deshabilitados con estilo personalizado */
     .disabled-field {
-        background-color: #f8fafc;
+        background-color: var(--sidebar-bg);
         border-color: var(--light-blue);
         color: #6b7280;
     }
@@ -150,11 +150,11 @@
 
     /* Campos auxiliares turno noche con fondo azul suave */
     .campos-auxiliares-noche {
-        background: linear-gradient(135deg, #f0f7ff 0%, #e8f2ff 100%);
-        border: 1px solid var(--light-blue);
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
+        border: 1px solid var(--tertiary-color);
         border-radius: 0.75rem;
         padding: 1.5rem;
-        box-shadow: 0 1px 3px 0 rgba(136, 166, 211, 0.1);
+        box-shadow: 0 1px 3px 0 rgba(233, 134, 114, 0.1);
     }
 
     .campos-auxiliares-noche h3 {
@@ -165,19 +165,15 @@
         color: var(--secondary-color);
     }
 
-    .campos-auxiliares-noche .input-field {
-        background-color: white;
-        border-color: var(--light-blue);
-    }
-
     .campos-auxiliares-noche .input-field:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.15);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.15);
     }
 
     .campos-auxiliares-noche label {
         color: var(--accent-color);
     }
+
 </style>
 
 <div class="container mx-auto py-6 px-4">
@@ -188,7 +184,7 @@
 
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-edit mr-2 icon-azul'></i>
+                    <i class='bx bx-edit mr-2' style="color: var(--primary-color);"></i>
                     Editar Registro #{{ $estadia->id_estadia }}
                 </h1>
                 <p class="text-gray-600">Modifica la información del registro de habitación</p>
@@ -229,7 +225,7 @@
             <!-- Información del Cliente -->
             <div class="field-group">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-user mr-2 icon-azul'></i>
+                    <i class='bx bx-user mr-2' style="color: var(--primary-color);"></i>
                     Información del Cliente
                 </h2>
                 
@@ -327,7 +323,7 @@
             <!-- Selector de Turno -->
             <div class="field-group">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-sun mr-2 icon-azul'></i>
+                    <i class='bx bx-sun mr-2' style="color: var(--primary-color);"></i>
                     Turno de Trabajo
                 </h2>
                 
@@ -391,7 +387,7 @@
             <!-- Detalles de la Estadía -->
             <div class="field-group">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-bed mr-2 icon-azul'></i>
+                    <i class='bx bx-bed mr-2' style="color: var(--primary-color);"></i>
                     Detalles de la Estadía
                 </h2>
                 
@@ -486,7 +482,7 @@
         <!-- Información de Pago -->
         <div class="field-group">
             <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <i class='bx bx-credit-card mr-2 icon-azul'></i>
+                <i class='bx bx-credit-card mr-2' style="color: var(--primary-color);"></i>
                 Información de Pago
             </h2>
             

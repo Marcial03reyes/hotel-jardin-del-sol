@@ -9,7 +9,7 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-plus-circle mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-plus-circle mr-2' style="color: #E98672;"></i>
                     Agregar Nuevo Servicio
                 </h1>
                 <p class="text-gray-600">Registra un nuevo servicio de gasto fijo</p>
@@ -17,7 +17,7 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center text-gray-600 hover:text-coral-600 transition-colors" style="color: #374151;" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver a gastos fijos
             </a>
@@ -46,7 +46,7 @@
             @csrf
 
             <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <i class='bx bx-receipt mr-2' style="color: #6B8CC7;"></i>
+                <i class='bx bx-receipt mr-2' style="color: #E98672;"></i>
                 Información del Servicio
             </h2>
             
@@ -60,7 +60,7 @@
                     <input type="text" 
                         name="nombre_servicio" 
                         value="{{ old('nombre_servicio') }}"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-coral-500 focus:border-coral-500 transition-all" 
                         placeholder="Ej: Internet, Agua, Luz, Cable"
                         required 
                         maxlength="100">
@@ -127,7 +127,10 @@
                 </a>
                 
                 <button type="submit" 
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center">
+                        class="text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center"
+                        style="background-color: #E98672;" 
+                        onmouseover="this.style.backgroundColor='#D4735E'" 
+                        onmouseout="this.style.backgroundColor='#E98672'">
                     <i class='bx bx-save mr-2'></i>
                     Guardar Servicio
                 </button>

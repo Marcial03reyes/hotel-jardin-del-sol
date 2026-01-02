@@ -10,7 +10,7 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-history mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-history mr-2' style="color: #E98672;"></i>
                     Historial de Pagos
                 </h1>
                 <p class="text-gray-600">{{ $gastoFijo->nombre_servicio }}</p>
@@ -23,12 +23,12 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver a gastos fijos
             </a>
             <span>•</span>
-            <a href="{{ route('gastos-fijos.edit', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.edit', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-edit mr-1'></i>
                 Editar servicio
             </a>
@@ -58,7 +58,7 @@
                     <p class="text-sm text-gray-600">Día de Vencimiento</p>
                     <p class="text-2xl font-bold text-gray-800">{{ $gastoFijo->dia_vencimiento }}</p>
                 </div>
-                <i class='bx bx-calendar text-3xl' style="color: #6B8CC7;"></i>
+                <i class='bx bx-calendar text-3xl' style="color: #E98672;"></i>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
                     <p class="text-sm text-gray-600">Monto Fijo</p>
                     <p class="text-2xl font-bold text-gray-800">S/ {{ number_format($gastoFijo->monto_fijo, 2) }}</p>
                 </div>
-                <i class='bx bx-money text-3xl' style="color: #6B8CC7;"></i>
+                <i class='bx bx-money text-3xl' style="color: #E98672;"></i>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
                     <p class="text-sm text-gray-600">Cantidad de Pagos</p>
                     <p class="text-2xl font-bold text-gray-800">{{ $gastoFijo->getCantidadPagos() }}</p>
                 </div>
-                <i class='bx bx-receipt text-3xl' style="color: #6B8CC7;"></i>
+                <i class='bx bx-receipt text-3xl' style="color: #E98672;"></i>
             </div>
         </div>
     </div>
@@ -124,7 +124,7 @@
 
                         <!-- Método de pago -->
                         <td class="px-4 py-4 whitespace-nowrap text-center">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: #FEF9CB; color: #C85A47;">
                                 {{ $pago->metodoPago->met_pago }}
                             </span>
                         </td>
@@ -147,8 +147,11 @@
                         <td class="px-4 py-4 whitespace-nowrap text-center">
                             <div class="flex gap-2 justify-center">
                                 <a href="{{ route('gastos-fijos.edit-pago', [$gastoFijo->id_gasto_fijo, $pago->id_pago_gasto]) }}" 
-                                   class="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50 transition-colors" 
-                                   title="Editar pago">
+                                    class="p-1 rounded transition-colors hover:bg-red-50" 
+                                    style="color: #E98672;"
+                                    onmouseover="this.style.color='#D4735E'" 
+                                    onmouseout="this.style.color='#E98672'"
+                                    title="Editar pago">
                                     <i class='bx bx-edit text-lg'></i>
                                 </a>
                                 <button onclick="eliminarPago({{ $gastoFijo->id_gasto_fijo }}, {{ $pago->id_pago_gasto }}, '{{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}')"

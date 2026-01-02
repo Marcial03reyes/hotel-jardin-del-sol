@@ -5,21 +5,21 @@
 @section('content')
 <style>
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --accent-color: #4A73B8;
-        --tertiary-color: #A5BFDB;
-        --sidebar-bg: #F8FAFC;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .form-container {
         background: white;
         border-radius: 1.5rem;
         padding: 2rem;
-        box-shadow: 0 10px 30px rgba(136, 166, 211, 0.1);
-        border: 1px solid rgba(136, 166, 211, 0.2);
+        box-shadow: 0 10px 30px rgba(233, 134, 114, 0.1);
+        border: 1px solid rgba(233, 134, 114, 0.2);
     }
 
     .input-field {
@@ -29,7 +29,7 @@
 
     .input-field:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         outline: none;
         background-color: white;
     }
@@ -49,7 +49,7 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+        box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
     }
 
     .btn-secondary {
@@ -72,26 +72,17 @@
         font-weight: 600;
     }
 
-    .page-header {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: white;
-        padding: 1.5rem;
-        border-radius: 1rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 8px 20px rgba(136, 166, 211, 0.3);
-    }
-
     .file-upload-area {
         border: 2px dashed var(--tertiary-color);
         border-radius: 0.75rem;
         padding: 1.5rem;
-        background: rgba(136, 166, 211, 0.05);
+        background: rgba(233, 134, 114, 0.05);
         transition: all 0.3s ease;
     }
 
     .file-upload-area:hover {
         border-color: var(--primary-color);
-        background: rgba(136, 166, 211, 0.1);
+        background: rgba(233, 134, 114, 0.1);
     }
 
     .turno-button {
@@ -132,17 +123,17 @@
 </style>
 
 <!-- Header -->
-<div class="page-header">
+<div class="mb-6">
     <div class="flex items-center">
-        <a href="{{ route('gastos.index') }}" class="text-white hover:text-gray-200 mr-4 transition-colors">
+        <a href="{{ route('gastos.index') }}" class="text-gray-600 hover:text-coral-600 mr-4 transition-colors" style="color: var(--accent-color);">
             <i class='bx bx-arrow-back text-2xl'></i>
         </a>
         <div>
-            <h1 class="text-3xl font-bold flex items-center">
-                <i class='bx bx-wallet mr-3 text-4xl'></i>
+            <h1 class="text-3xl font-bold flex items-center text-gray-800">
+                <i class='bx bx-wallet mr-3 text-4xl' style="color: var(--primary-color);"></i>
                 Nuevo Gasto Variable
             </h1>
-            <p class="opacity-90 mt-1">Registra un nuevo gasto variable del hotel</p>
+            <p class="text-gray-600 mt-1">Registra un nuevo gasto variable del hotel Jardín del Sol</p>
         </div>
     </div>
 </div>
@@ -309,7 +300,7 @@
     </form>
 
     <!-- Información adicional -->
-    <div class="mt-6 p-4 rounded-lg" style="background: rgba(136, 166, 211, 0.1); border-left: 4px solid var(--primary-color);">
+    <div class="mt-6 p-4 rounded-lg" style="background: rgba(233, 134, 114, 0.1); border-left: 4px solid var(--primary-color);">
         <h3 class="font-semibold text-sm mb-2" style="color: var(--accent-color);">
             <i class='bx bx-info-circle mr-1'></i>
             Información importante

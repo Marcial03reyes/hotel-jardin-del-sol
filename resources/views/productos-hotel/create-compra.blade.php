@@ -9,7 +9,7 @@
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                         <i class='bx bx-cleaning mr-2'></i>
                         Productos Hotel
                     </a>
@@ -17,7 +17,7 @@
                 <li>
                     <div class="flex items-center">
                         <i class='bx bx-chevron-right text-gray-400'></i>
-                        <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">
+                        <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" class="ml-1 text-sm font-medium text-gray-700 transition-colors md:ml-2" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                             {{ $producto->nombre }}
                         </a>
                     </div>
@@ -36,7 +36,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">Registrar Nueva Compra</h1>
-                    <p class="text-gray-600 mt-1">Producto: <span class="font-semibold text-blue-600">{{ $producto->nombre }}</span></p>
+                    <p class="text-gray-600 mt-1">Producto: <span class="font-semibold" style="color: #E98672;">{{ $producto->nombre }}</span></p>
                 </div>
                 <div class="flex space-x-3">
                     <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" 
@@ -161,23 +161,23 @@
                 </div>
 
                 <!-- Total Calculado -->
-                <div class="bg-gray-50 rounded-lg p-4 border">
+                <div class="rounded-lg p-4 border" style="background-color: #F3F4F6;">
                     <div class="flex items-center justify-between">
                         <span class="text-sm font-medium text-gray-700">Total de la compra:</span>
-                        <span id="total-compra" class="text-lg font-bold text-blue-600">S/ 0.00</span>
+                        <span id="total-compra" class="text-lg font-bold" style="color: #6B7280;">S/ 0.00</span>
                     </div>
                     <p class="text-xs text-gray-500 mt-1">El total se calcula automáticamente: cantidad × precio unitario</p>
                 </div>
 
                 <!-- Información del producto -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div class="border rounded-lg p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <i class='bx bx-info-circle text-blue-400 text-xl'></i>
+                            <i class='bx bx-info-circle text-xl' style="color: #E98672;"></i>
                         </div>
                         <div class="ml-3">
-                            <h4 class="text-sm font-medium text-blue-800 mb-2">Registro de compra para productos del hotel</h4>
-                            <div class="text-sm text-blue-700 space-y-1">
+                            <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Registro de compra para productos del hotel</h4>
+                            <div class="text-sm space-y-1" style="color: #C85A47;">
                                 <p>• Esta compra se registrará en el historial del producto <strong>{{ $producto->nombre }}</strong></p>
                                 <p>• El sistema calculará automáticamente la frecuencia de compra basándose en el historial</p>
                                 <p>• Esto te ayudará a planificar futuras compras de productos de limpieza y mantenimiento</p>
@@ -194,7 +194,10 @@
                         Cancelar
                     </a>
                     <button type="submit" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            class="inline-flex items-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                            style="background-color: #E98672;"
+                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                            onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-save mr-2'></i>
                         Registrar Compra
                     </button>

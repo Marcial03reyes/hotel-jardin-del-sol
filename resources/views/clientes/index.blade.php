@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Clientes - Hotel Romance')
+@section('title', 'Clientes - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores azul Hotel Jardín del Solnce */
     :root {
-        --primary-color: #88A6D3; /* Azul principal */
-        --secondary-color: #6B8CC7; /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB; /* Azul terciario más claro */
-        --accent-color: #4A73B8; /* Azul de acento oscuro */
-        --light-blue: #C8D7ED; /* Azul muy claro */
-        --sidebar-bg: #f4f8fc; /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3; /* Color hover */
-        --gradient-start: #88A6D3; /* Inicio gradiente */
-        --gradient-end: #6B8CC7; /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
     
     .table-container {
@@ -24,7 +24,7 @@
     
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
     }
     
     .btn-romance {
@@ -35,13 +35,13 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
     }
     
     .table-row:hover {
         background-color: var(--sidebar-bg);
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 2px 8px rgba(233, 134, 114, 0.1);
         transition: all 0.2s ease;
     }
     
@@ -55,8 +55,8 @@
     }
     
     .badge-documento {
-        background-color: var(--light-blue);
-        color: var(--accent-color);
+        background-color: #ddd6fe;
+        color: #7c3aed;
     }
     
     .badge-activo {
@@ -81,7 +81,7 @@
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Gestión de Clientes</h1>
-            <p class="text-gray-600">Administra la información de los clientes del Hotel Romance</p>
+            <p class="text-gray-600">Administra la información de los clientes del Hotel Jardín del Sol</p>
         </div>
         <a href="{{ route('clientes.create') }}"
            class="btn-romance text-white px-6 py-3 rounded-lg font-medium shadow-lg">
@@ -139,7 +139,7 @@
     <div class="table-container rounded-xl shadow-lg overflow-hidden">
         <div class="overflow-x-auto" style="max-height: 600px; overflow-y: auto;">
             <table class="min-w-full bg-white">
-                <thead class="bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
+                <thead class="text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--tertiary-color), var(--secondary-color));">
                     <tr>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Documento</th>

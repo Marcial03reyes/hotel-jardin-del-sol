@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Agregar Registro - Hotel Romance')
+@section('title', 'Agregar Registro - Hotel Jardín del Sol')
 
 @section('content')
 
@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Hotel Romance - Sistema Administrativo')</title>
+    <title>@yield('title', 'Hotel Jardín del Sol - Sistema Administrativo')</title>
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -28,15 +28,15 @@
         
         /* Paleta de colores azul Hotel Romance */
         :root {
-            --primary-color: #88A6D3; /* Azul principal */
-            --secondary-color: #6B8CC7; /* Azul secundario más oscuro */
-            --tertiary-color: #A5BFDB; /* Azul terciario más claro */
-            --accent-color: #4A73B8; /* Azul de acento oscuro */
-            --light-blue: #C8D7ED; /* Azul muy claro */
-            --sidebar-bg: #f4f8fc; /* Fondo sidebar azul muy suave */
-            --hover-bg: #88A6D3; /* Color hover */
-            --gradient-start: #88A6D3; /* Inicio gradiente */
-            --gradient-end: #6B8CC7; /* Fin gradiente */
+            --primary-color: #E98672;        /* Coral principal */
+            --secondary-color: #D4735E;      /* Coral más oscuro */
+            --tertiary-color: #F2A898;       /* Coral más claro */
+            --accent-color: #C85A47;         /* Coral de acento oscuro */
+            --light-blue: #FEF9CB;           /* Crema muy claro */
+            --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+            --hover-bg: #E98672;             /* Color hover */
+            --gradient-start: #E98672;       /* Inicio gradiente */
+            --gradient-end: #D4735E;         /* Fin gradiente */
         }
 
         /* Contenedor principal del formulario*/
@@ -44,8 +44,8 @@
             background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
             border-radius: 1rem;
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(136, 166, 211, 0.1);
-            border: 1px solid rgba(136, 166, 211, 0.2);
+            box-shadow: 0 4px 20px rgba(233, 134, 114, 0.1);
+            border: 1px solid rgba(233, 134, 114, 0.2);
         }
 
         /* Estilos para inputs */
@@ -56,7 +56,7 @@
 
         .input-field:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+            box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
             outline: none;
             background-color: white;
         }
@@ -71,13 +71,13 @@
             transition: all 0.3s ease;
             color: white;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 2px 8px rgba(233, 134, 114, 0.3);
         }
 
         .btn-romance:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+            box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
         }
 
         /* Botón secundario (Cancelar) */
@@ -109,7 +109,7 @@
             padding: 1.5rem;
             border-radius: 1rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 16px rgba(233, 134, 114, 0.3);
         }
 
         /* Mensajes de error */
@@ -119,7 +119,7 @@
             border-radius: 0.75rem;
             padding: 1rem;
             color: #dc2626;
-            box-shadow: 0 2px 8px rgba(248, 113, 113, 0.1);
+            box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         }
 
         /* Efectos visuales adicionales */
@@ -133,7 +133,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.25rem;
-            box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         }
 
         /* Animación sutil para el contenedor */
@@ -179,7 +179,7 @@
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold mb-1">Agregar Nuevo Cliente</h1>
-                        <p class="opacity-90 text-sm">Registra la información del cliente en el sistema del Hotel Romance</p>
+                        <p class="opacity-90 text-sm">Registra la información del cliente en el sistema del Hotel Jardín del Sol</p>
                     </div>
                 </div>
             </div>
@@ -370,7 +370,7 @@
                 </form>
 
                 <!-- Información adicional -->
-                <div class="mt-6 p-4 rounded-lg" style="background: rgba(136, 166, 211, 0.05); border: 1px solid rgba(136, 166, 211, 0.2);">
+                <div class="mt-6 p-4 rounded-lg" style="background: rgba(233, 134, 114, 0.05); border: 1px solid rgba(233, 134, 114, 0.2);">
                     <div class="flex items-start">
                         <i class='bx bx-lightbulb text-lg mr-2' style="color: var(--accent-color);"></i>
                         <div class="text-sm text-gray-600">

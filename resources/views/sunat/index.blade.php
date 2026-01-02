@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
-@section('title', 'SUNAT - Hotel Romance')
+@section('title', 'SUNAT - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3;      /* Azul principal */
-        --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-        --accent-color: #4A73B8;       /* Azul de acento oscuro */
-        --light-blue: #C8D7ED;         /* Azul muy claro */
-        --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3;           /* Color hover */
-        --gradient-start: #88A6D3;     /* Inicio gradiente */
-        --gradient-end: #6B8CC7;       /* Fin gradiente */
-    }
-
-    .form-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
     
+    .form-container {
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
+    }
+
     .btn-romance {
         background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
         transition: all 0.3s ease;
@@ -123,10 +123,9 @@
         color: var(--secondary-color);
     }
 
-    /* Header de tabla con tema azul */
     .table-header {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-bottom: 2px solid var(--light-blue);
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
+        border-bottom: 2px solid var(--tertiary-color);
     }
 
     .table-header th {
@@ -135,15 +134,13 @@
         font-size: 0.875rem;
     }
 
-    /* Filas de tabla */
     .table-row:hover {
-        background-color: #f8fafc;
+        background-color: var(--sidebar-bg);
     }
-
     /* Información adicional con tema azul */
     .info-box {
-        background-color: #f0f7ff;
-        border-color: var(--light-blue);
+        background-color: var(--sidebar-bg);
+        border-color: var(--tertiary-color);
     }
 
     .info-text {
@@ -163,7 +160,7 @@
 
     /* Estadísticas */
     .stats-card {
-        background: linear-gradient(135deg, var(--light-blue) 0%, #e0f2fe 100%);
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
         border: 1px solid var(--tertiary-color);
     }
 
@@ -189,7 +186,7 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-receipt mr-2 icon-azul'></i>
+                    <i class='bx bx-receipt mr-2' style="color: var(--primary-color);"></i>
                     Comprobantes SUNAT
                 </h1>
                 <p class="text-gray-600">Administra y controla todos los comprobantes fiscales</p>
@@ -271,51 +268,35 @@
     </div>
 
     <!-- Estadísticas rápidas -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div class="stats-card p-4 rounded-lg">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-sm font-medium text-gray-600">Total Comprobantes</p>
-                    <p class="text-2xl font-bold text-gray-800">{{ $comprobantes->count() }}</p>
-                </div>
-                <div class="stats-icon w-12 h-12 rounded-full flex items-center justify-center text-white">
-                    <i class='bx bx-receipt text-xl'></i>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stats-card p-4 rounded-lg">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600">Monto Total</p>
-                    <p class="text-2xl font-bold text-gray-800">S/ {{ number_format($comprobantes->sum('monto'), 2) }}</p>
-                </div>
-                <div class="stats-icon w-12 h-12 rounded-full flex items-center justify-center text-white">
-                    <i class='bx bx-money text-xl'></i>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stats-card p-4 rounded-lg">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600">Boletas</p>
-                    <p class="text-2xl font-bold text-gray-800">{{ $comprobantes->where('tipo_comprobante', 'BOLETA')->count() }}</p>
-                </div>
-                <div class="stats-icon w-12 h-12 rounded-full flex items-center justify-center text-white">
-                    <i class='bx bx-file text-xl'></i>
-                </div>
-            </div>
-        </div>
-        
-        <div class="stats-card p-4 rounded-lg">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-gray-600">Facturas</p>
-                    <p class="text-2xl font-bold text-gray-800">{{ $comprobantes->where('tipo_comprobante', 'FACTURA')->count() }}</p>
+                    <p class="text-sm font-medium text-gray-600">Cantidad Facturas (Mes Actual)</p>
+                    <p class="text-2xl font-bold text-gray-800">
+                        {{ $comprobantes->where('tipo_comprobante', 'FACTURA')->filter(function($item) {
+                            return \Carbon\Carbon::parse($item->fecha_comprobante)->format('Y-m') === now()->format('Y-m');
+                        })->count() }}
+                    </p>
                 </div>
                 <div class="stats-icon w-12 h-12 rounded-full flex items-center justify-center text-white">
                     <i class='bx bx-file-blank text-xl'></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-card p-4 rounded-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-gray-600">Monto Facturas (Mes Actual)</p>
+                    <p class="text-2xl font-bold text-gray-800">
+                        S/ {{ number_format($comprobantes->where('tipo_comprobante', 'FACTURA')->filter(function($item) {
+                            return \Carbon\Carbon::parse($item->fecha_comprobante)->format('Y-m') === now()->format('Y-m');
+                        })->sum('monto'), 2) }}
+                    </p>
+                </div>
+                <div class="stats-icon w-12 h-12 rounded-full flex items-center justify-center text-white">
+                    <i class='bx bx-money text-xl'></i>
                 </div>
             </div>
         </div>
@@ -335,7 +316,7 @@
     <div class="table-container">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-lg font-semibold text-gray-800 flex items-center">
-                <i class='bx bx-list-ul mr-2 icon-azul'></i>
+                <i class='bx bx-list-ul mr-2' style="color: var(--primary-color);"></i>
                 Lista de Comprobantes
             </h2>
             <span class="badge-info">

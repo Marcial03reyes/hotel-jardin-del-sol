@@ -9,7 +9,7 @@
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('productos-bodega.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <a href="{{ route('productos-bodega.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                         <i class='bx bx-package mr-2'></i>
                         Productos Bodega
                     </a>
@@ -17,7 +17,7 @@
                 <li>
                     <div class="flex items-center">
                         <i class='bx bx-chevron-right text-gray-400'></i>
-                        <a href="{{ route('productos-bodega.historial', $producto->id_prod_bod) }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2">
+                        <a href="{{ route('productos-bodega.historial', $producto->id_prod_bod) }}" class="ml-1 text-sm font-medium text-gray-700 transition-colors md:ml-2" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                             {{ $producto->nombre }}
                         </a>
                     </div>
@@ -37,7 +37,7 @@
                 <div>
                     <h1 class="text-2xl font-bold text-gray-900">Editar Producto</h1>
                     <p class="text-gray-600 mt-1">
-                        Modifica la información de: <span class="font-semibold text-blue-600">{{ $producto->nombre }}</span>
+                        Modifica la información de: <span class="font-semibold" style="color: #E98672;">{{ $producto->nombre }}</span>
                     </p>
                     <p class="text-gray-500 text-sm mt-1">ID: {{ $producto->id_prod_bod }}</p>
                 </div>
@@ -181,7 +181,10 @@
                         Cancelar
                     </a>
                     <button type="submit" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            class="inline-flex items-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                            style="background-color: #E98672;"
+                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                            onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-save mr-2'></i>
                         Actualizar Producto
                     </button>
@@ -189,35 +192,6 @@
             </form>
         </div>
 
-        <!-- Estadísticas rápidas -->
-        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-md p-4">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <i class='bx bx-info-circle text-blue-400 text-xl'></i>
-                </div>
-                <div class="ml-3">
-                    <h4 class="text-sm font-medium text-blue-800 mb-2">Estadísticas del Producto</h4>
-                    <div class="text-sm text-blue-700 grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                            <span class="block text-blue-600">Stock Actual:</span>
-                            <span class="font-semibold">{{ $producto->stock ?? 0 }} unidades</span>
-                        </div>
-                        <div>
-                            <span class="block text-blue-600">Total Compras:</span>
-                            <span class="font-semibold">{{ $producto->comprasBodega->count() ?? 0 }}</span>
-                        </div>
-                        <div>
-                            <span class="block text-blue-600">Inversión Total:</span>
-                            <span class="font-semibold">S/ {{ number_format($producto->inversion_total ?? 0, 2) }}</span>
-                        </div>
-                        <div>
-                            <span class="block text-blue-600">Unidades Vendidas:</span>
-                            <span class="font-semibold">{{ $producto->unidades_vendidas ?? 0 }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

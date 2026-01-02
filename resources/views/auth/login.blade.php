@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Hotel Romance - Iniciar Sesión</title>
+    <title>Hotel Jardín del Sol - Iniciar Sesión</title>
     
     <style>
         * {
@@ -35,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
+            background: linear-gradient(135deg, #E98672 0%, #D4735E 100%);
             position: relative;
             overflow: hidden;
         }
@@ -80,14 +80,14 @@
             width: 80px;
             height: 80px;
             margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            background: linear-gradient(135deg, #E98672, #D4735E);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
             color: white;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 25px rgba(233, 134, 114, 0.4);
             position: relative;
             overflow: hidden;
         }
@@ -106,7 +106,7 @@
         .hotel-name {
             font-size: 2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            background: linear-gradient(135deg, #E98672, #D4735E);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -161,9 +161,9 @@
         input[type="text"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #3B82F6;
+            border-color: #E98672;
             background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         }
 
         .input-error {
@@ -205,25 +205,25 @@
         .remember-me input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: #3B82F6;
+            accent-color: #E98672;
             cursor: pointer;
         }
 
         .forgot-password {
-            color: #3B82F6;
+            color: #E98672;
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
         .forgot-password:hover {
-            color: #1E40AF;
+            color: #D4735E;
         }
 
         .login-button {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            background: linear-gradient(135deg, #E98672, #D4735E);
             color: white;
             border: none;
             border-radius: 10px;
@@ -254,7 +254,7 @@
 
         .login-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 25px rgba(233, 134, 114, 0.4);
         }
 
         .login-button:active {
@@ -277,12 +277,12 @@
     </style>
 </head>
 <body>
-    <!-- Estrellas decorativas -->
-    <div class="heart">⭐</div>
-    <div class="heart">⭐</div>
-    <div class="heart">⭐</div>
-    <div class="heart">⭐</div>
-    <div class="heart">⭐</div>
+    <!-- Flores decorativas -->
+    <div class="heart">🌸</div>
+    <div class="heart">🌸</div>
+    <div class="heart">🌸</div>
+    <div class="heart">🌸</div>
+    <div class="heart">🌸</div>
 
     <div class="login-container">
         <!-- Logo del hotel -->
@@ -290,7 +290,7 @@
             <div class="hotel-icon">
                 <span>⭐</span>
             </div>
-            <h1 class="hotel-name">Romance</h1>
+            <h1 class="hotel-name">Jardín del Sol</h1>
             <p class="subtitle">Sistema Administrativo</p>
         </div>
 

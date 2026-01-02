@@ -9,7 +9,7 @@
         <nav class="flex mb-6" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                    <a href="{{ route('productos-hotel.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                         <i class='bx bx-cleaning mr-2'></i>
                         Productos Hotel
                     </a>
@@ -75,14 +75,15 @@
                         </label>
                         <div class="relative">
                             <input type="text" 
-                                   id="nombre" 
-                                   name="nombre" 
-                                   value="{{ old('nombre') }}"
-                                   maxlength="50"
-                                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm @error('nombre') border-red-300 @enderror"
-                                   placeholder="Ej: Lejía, Detergente, Papel higiénico, etc."
-                                   required
-                                   autocomplete="off">
+                                id="nombre" 
+                                name="nombre" 
+                                value="{{ old('nombre') }}"
+                                maxlength="50"
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm @error('nombre') border-red-300 @enderror"
+                                style="focus:ring-color: #E98672; focus:border-color: #E98672;"
+                                placeholder="Ej: Lejía, Detergente, Papel higiénico, etc."
+                                required
+                                autocomplete="off">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class='bx bx-cleaning text-gray-400'></i>
                             </div>
@@ -97,14 +98,14 @@
                 </div>
 
                 <!-- Información adicional -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div class="border rounded-lg p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <i class='bx bx-info-circle text-blue-400 text-xl'></i>
+                            <i class='bx bx-info-circle text-xl' style="color: #E98672;"></i>
                         </div>
                         <div class="ml-3">
-                            <h4 class="text-sm font-medium text-blue-800 mb-2">Sobre los productos de hotel</h4>
-                            <div class="text-sm text-blue-700 space-y-1">
+                            <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Sobre los productos de hotel</h4>
+                            <div class="text-sm space-y-1" style="color: #C85A47;">
                                 <p>• Los productos de hotel son para uso interno del establecimiento</p>
                                 <p>• Una vez creado, podrás registrar compras y el sistema calculará indicadores de recompra</p>
                                 <p>• El indicador se basa en la frecuencia promedio entre compras</p>
@@ -121,7 +122,10 @@
                         Cancelar
                     </a>
                     <button type="submit" 
-                            class="inline-flex items-center px-6 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            class="inline-flex items-center px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                            style="background-color: #E98672;"
+                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                            onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-plus mr-2'></i>
                         Crear Producto
                     </button>

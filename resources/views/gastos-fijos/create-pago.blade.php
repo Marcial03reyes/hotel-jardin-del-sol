@@ -10,13 +10,12 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-plus-circle mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-plus-circle mr-2' style="color: #E98672;"></i>
                     Registrar Pago
-                </h1>
-                <p class="text-gray-600">{{ $gastoFijo->nombre_servicio }}</p>
+                </h1>             <p class="text-gray-600">{{ $gastoFijo->nombre_servicio }}</p>
             </div>
             <div class="flex items-center space-x-2">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style="background-color: #FEF9CB; color: #C85A47;">
                     <i class='bx bx-calendar mr-1'></i>
                     Vence día {{ $gastoFijo->dia_vencimiento }}
                 </span>
@@ -28,7 +27,7 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center text-gray-600 hover:text-coral-600 transition-colors" style="color: #374151;" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver al historial
             </a>
@@ -58,7 +57,7 @@
 
         <div class="bg-white p-6 rounded-lg shadow-sm border">
             <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <i class='bx bx-receipt mr-2' style="color: #6B8CC7;"></i>
+                <i class='bx bx-receipt mr-2' style="color: #E98672;"></i>
                 Información del Pago
             </h2>
             

@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Registro de Bodega - Hotel Romance')
+@section('title', 'Registro de Bodega - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores azul Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --tertiary-color: #A5BFDB;
-        --accent-color: #4A73B8;
-        --light-blue: #C8D7ED;
-        --sidebar-bg: #f4f8fc;
-        --hover-bg: #88A6D3;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .table-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, #FFFDF5 0%, #FEF9CB 100%);
     }
     
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
     }
     
     .btn-romance {
@@ -35,13 +35,13 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
     }
     
     .table-row:hover {
-        background-color: #f4f8fc;
+        background-color: #FFFDF5;
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 2px 8px rgba(233, 134, 114, 0.1);
         transition: all 0.2s ease;
     }
     
@@ -60,8 +60,8 @@
     }
 
     .badge-turno-noche {
-        background-color: #dbeafe;
-        color: #1d4ed8;
+        background-color: #FEF9CB;
+        color: #C85A47;
     }
 
     .badge-comprobante-si {
@@ -82,7 +82,7 @@
 
     .stats-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.2);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.2);
     }
 
     .table-header {
@@ -136,20 +136,31 @@
             <form method="GET" action="{{ route('pagos-productos.index') }}" id="filtroForm" class="flex flex-wrap gap-4 items-end">
                 <!-- Botones de período rápido -->
                 <div class="flex gap-2">
+                    <!-- Botón "Hoy" -->
                     <button type="submit" name="filtro" value="hoy"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'hoy' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'hoy' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro', 'todos') === 'hoy' ? 'background-color: #E98672;' : '' }}">
                         Hoy
                     </button>
+
+                    <!-- Botón "Esta Semana" -->
                     <button type="submit" name="filtro" value="semana"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'semana' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'semana' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro') === 'semana' ? 'background-color: #E98672;' : '' }}">
                         Esta Semana
                     </button>
+
+                    <!-- Botón "Personalizado" -->
                     <button type="button" id="personalizadoBtn"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'personalizado' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'personalizado' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro') === 'personalizado' ? 'background-color: #E98672;' : '' }}">
                         Personalizado
                     </button>
+
+                    <!-- Botón "Todos" -->
                     <button type="submit" name="filtro" value="todos"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'todos' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'todos' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro', 'todos') === 'todos' ? 'background-color: #E98672;' : '' }}">
                         Todos
                     </button>
                 </div>
@@ -168,8 +179,12 @@
                             value="{{ request('fecha_fin') }}"
                             class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
+                    
                     <button type="submit" name="filtro" value="personalizado"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors duration-200">
+                        class="px-4 py-2 text-white rounded-lg text-sm transition-colors duration-200"
+                        style="background-color: #E98672;"
+                        onmouseover="this.style.backgroundColor='#D4735E'" 
+                        onmouseout="this.style.backgroundColor='#E98672'">
                         Filtrar
                     </button>
                 </div>
@@ -244,7 +259,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex items-center space-x-2">
                                     <a href="{{ route('pagos-productos.edit', $venta->id_compra) }}"
-                                       class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-xs rounded-full hover:bg-blue-200 transition-colors">
+                                        class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
                                         <i class='bx bx-edit mr-1'></i>
                                         Editar
                                     </a>

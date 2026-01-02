@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>LIBRO DE HUESPEDES - HOSTAL ROMANCE</title>
+    <title>LIBRO DE HUESPEDES - HOSTAL JARDÍN DEL SOL</title>
     <style>
         @page {
             margin: 10mm;
@@ -75,7 +75,7 @@
 </head>
 <body>
     <div class="header">
-        LIBRO DE HUESPEDES - Romance
+        LIBRO DE HUESPEDES - Jardín del Sol
     </div>
     
     <table>

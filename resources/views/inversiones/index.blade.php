@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'Inversiones - Hotel Romance')
+@section('title', 'Inversiones - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
     /* Paleta de colores azul Hotel Romance */
     :root {
-        --primary-color: #88A6D3;      /* Azul principal */
-        --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-        --accent-color: #4A73B8;       /* Azul de acento oscuro */
-        --light-blue: #C8D7ED;         /* Azul muy claro */
-        --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3;           /* Color hover */
-        --gradient-start: #88A6D3;     /* Inicio gradiente */
-        --gradient-end: #6B8CC7;       /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .form-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, #FFFDF5 0%, #FEF9CB 100%);
     }
     
     .btn-romance {
@@ -31,7 +31,7 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
     }
     
     .btn-secondary {
@@ -290,7 +290,7 @@
                             <span class="font-semibold text-emerald-600">S/ {{ number_format($inversion->monto, 2) }}</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: #ddd6fe; color: #7c3aed;">
                                 {{ $inversion->met_pago }}
                             </span>
                         </td>
@@ -302,7 +302,10 @@
                         </td>
                         <td class="px-6 py-4 text-right space-x-2">
                             <a href="{{ route('inversiones.edit', $inversion->id_inversion) }}" 
-                               class="inline-flex items-center rounded-lg px-3 py-1.5 text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-all">
+                                class="inline-flex items-center rounded-lg px-3 py-1.5 text-xs font-medium transition-all"
+                                style="background-color: #FEF9CB; color: #C85A47;"
+                                onmouseover="this.style.backgroundColor='#F2A898'" 
+                                onmouseout="this.style.backgroundColor='#FEF9CB'">
                                 <i class='bx bx-edit mr-1'></i>
                                 Editar
                             </a>

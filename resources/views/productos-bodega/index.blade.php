@@ -1,29 +1,29 @@
 @extends('layouts.app')
 
-@section('title', 'Productos Bodega - Hotel Romance')
+@section('title', 'Productos Bodega - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores azul Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --tertiary-color: #A5BFDB;
-        --accent-color: #4A73B8;
-        --light-blue: #C8D7ED;
-        --sidebar-bg: #f4f8fc;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
     
     .table-container {
-        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
+        background: linear-gradient(135deg, #FFFDF5 0%, #FEF9CB 100%);
     }
     
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
     }
     
     .btn-romance {
@@ -35,14 +35,14 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         color: white;
     }
     
     .table-row:hover {
-        background-color: var(--sidebar-bg);
+        background-color: #FFFDF5;
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 2px 8px rgba(233, 134, 114, 0.1);
         transition: all 0.2s ease;
         cursor: pointer;
     }
@@ -72,8 +72,8 @@
     }
     
     .badge-producto {
-        background-color: var(--light-blue);
-        color: var(--accent-color);
+        background-color: #FEF9CB;
+        color: #C85A47;
     }
     
     .stats-card {
@@ -88,7 +88,7 @@
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Productos de Bodega</h1>
-            <p class="text-gray-600">Control de inventario y stock del Hotel Romance</p>
+            <p class="text-gray-600">Control de inventario y stock del Hotel Jardín del Sol</p>
         </div>
         <a href="{{ route('productos-bodega.create-producto') }}"
            class="btn-romance text-white px-6 py-3 rounded-lg font-medium shadow-lg">

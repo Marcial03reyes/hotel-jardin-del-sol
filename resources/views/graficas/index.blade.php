@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gráficas y Análisis - Hotel Romance')
+@section('title', 'Gráficas y Análisis - Hotel Jardín del Sol')
 
 @section('content')
 <!-- Header -->

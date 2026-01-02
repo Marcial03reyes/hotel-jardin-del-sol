@@ -55,13 +55,14 @@
                             Nombre del Producto
                         </label>
                         <input type="text" 
-                               id="nombre" 
-                               name="nombre" 
-                               value="{{ old('nombre', $producto->nombre) }}"
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                               placeholder="Ej: Detergente para pisos, Jabón antibacterial..."
-                               maxlength="50"
-                               required>
+                            id="nombre" 
+                            name="nombre" 
+                            value="{{ old('nombre', $producto->nombre) }}"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg transition-colors"
+                            style="focus:ring-color: #E98672; focus:border-color: #E98672;"
+                            placeholder="Ej: Detergente para pisos, Jabón antibacterial..."
+                            maxlength="50"
+                            required>
                         <p class="mt-1 text-xs text-gray-500">
                             <i class='bx bx-info-circle mr-1'></i>
                             Máximo 50 caracteres. Debe ser único en el sistema.
@@ -69,14 +70,14 @@
                     </div>
 
                     <!-- Información adicional -->
-                    <div class="bg-blue-50 border border-blue-200 rounded-md p-4">
+                    <div class="border rounded-md p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
                         <div class="flex">
                             <div class="flex-shrink-0">
-                                <i class='bx bx-lightbulb text-blue-400 text-xl'></i>
+                                <i class='bx bx-lightbulb text-xl' style="color: #E98672;"></i>
                             </div>
                             <div class="ml-3">
-                                <h4 class="text-sm font-medium text-blue-800 mb-2">Consejos para nombrar productos</h4>
-                                <div class="text-sm text-blue-700 space-y-1">
+                                <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Consejos para nombrar productos</h4>
+                                <div class="text-sm space-y-1" style="color: #C85A47;">
                                     <p>• Usa nombres descriptivos y específicos</p>
                                     <p>• Incluye la marca si es relevante</p>
                                     <p>• Evita caracteres especiales o acentos</p>
@@ -93,7 +94,10 @@
                             Cancelar
                         </a>
                         <button type="submit" 
-                                class="px-6 py-2 bg-blue-600 border border-transparent rounded-md text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                                class="px-6 py-2 border border-transparent rounded-md text-sm font-medium text-white transition-colors"
+                                style="background-color: #E98672;"
+                                onmouseover="this.style.backgroundColor='#D4735E'" 
+                                onmouseout="this.style.backgroundColor='#E98672'">
                             <i class='bx bx-save mr-1'></i>
                             Guardar Cambios
                         </button>
@@ -155,10 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Cambiar color del borde según la validez
         if (this.value.trim().length >= 3) {
             this.classList.remove('border-red-300');
-            this.classList.add('border-green-300');
+            this.style.borderColor = '#10B981'; // Verde para válido
         } else {
             this.classList.remove('border-green-300');
-            this.classList.add('border-red-300');
+            this.style.borderColor = '#EF4444'; // Rojo para inválido
         }
     });
 });

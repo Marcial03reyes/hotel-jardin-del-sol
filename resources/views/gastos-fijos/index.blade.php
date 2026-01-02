@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
-@section('title', 'Gastos Fijos - Hotel Romance')
+@section('title', 'Gastos Fijos - Hotel Jardín del Sol')
 
 @section('content')
 
 @section('content')
 <style>
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --accent-color: #4A73B8;
-        --tertiary-color: #A5BFDB;
-        --sidebar-bg: #F8FAFC;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .table-container {
         background: white;
         border-radius: 1rem;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(136, 166, 211, 0.1);
-        border: 1px solid rgba(136, 166, 211, 0.2);
+        box-shadow: 0 4px 20px rgba(233, 134, 114, 0.1);
+        border: 1px solid rgba(233, 134, 114, 0.2);
     }
 
     .btn-romance {
@@ -35,7 +35,7 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+        box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
     }
 
     .table-row {
@@ -44,7 +44,7 @@
     }
 
     .table-row:hover {
-        background-color: rgba(136, 166, 211, 0.05);
+        background-color: rgba(233, 134, 114, 0.05);
         border-left-color: var(--primary-color);
     }
 </style>
@@ -102,7 +102,7 @@
 
                         {{-- Día de vencimiento --}}
                         <td class="px-4 py-4 whitespace-nowrap text-center">
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium" style="background-color: #FEF9CB; color: #C85A47;">
                                 Día {{ $servicio->dia_vencimiento }}
                             </span>
                         </td>
@@ -118,7 +118,10 @@
                         <td class="px-4 py-4 whitespace-nowrap text-center">
                             <div class="flex gap-2 justify-center">
                                 <a href="{{ route('gastos-fijos.historial', $servicio->id_gasto_fijo) }}" 
-                                class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-xs rounded-full hover:bg-blue-200 transition-colors">
+                                    class="inline-flex items-center px-3 py-1 text-xs rounded-full transition-colors"
+                                    style="background-color: #FEF9CB; color: #C85A47;"
+                                    onmouseover="this.style.backgroundColor='#F2A898'" 
+                                    onmouseout="this.style.backgroundColor='#FEF9CB'">
                                     <i class='bx bx-history mr-1'></i>
                                     Historial
                                 </a>
@@ -134,9 +137,12 @@
                         <td class="px-4 py-4 whitespace-nowrap text-center">
                             <div class="flex gap-2 justify-center">
                                 <a href="{{ route('gastos-fijos.edit', $servicio->id_gasto_fijo) }}" 
-                                class="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50 transition-colors" 
-                                title="Editar servicio">
-                                    <i class='bx bx-edit text-lg'></i>
+                                    class="p-1 rounded transition-colors hover:bg-red-50" 
+                                    style="color: #E98672;"
+                                    onmouseover="this.style.color='#D4735E'" 
+                                    onmouseout="this.style.color='#E98672'"
+                                    title="Editar servicio">
+                                        <i class='bx bx-edit text-lg'></i>
                                 </a>
                                 <button onclick="eliminarServicio({{ $servicio->id_gasto_fijo }}, '{{ $servicio->nombre_servicio }}')"
                                         class="text-red-600 hover:text-red-900 p-1 rounded hover:bg-red-50 transition-colors" 

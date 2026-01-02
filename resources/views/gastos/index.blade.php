@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Gastos variables - Hotel Romance')
+@section('title', 'Gastos variables - Hotel Jardín del Sol')
 
 @section('content')
 <style>
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --accent-color: #4A73B8;
-        --tertiary-color: #A5BFDB;
-        --sidebar-bg: #F8FAFC;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .table-container {
         background: white;
         border-radius: 1rem;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(136, 166, 211, 0.1);
-        border: 1px solid rgba(136, 166, 211, 0.2);
+        box-shadow: 0 4px 20px rgba(233, 134, 114, 0.1);
+        border: 1px solid rgba(233, 134, 114, 0.2);
     }
 
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         outline: none;
     }
 
@@ -39,19 +39,19 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+        box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
     }
 
     .stats-card {
         background: linear-gradient(135deg, var(--tertiary-color), var(--primary-color));
         color: white;
-        box-shadow: 0 4px 16px rgba(136, 166, 211, 0.2);
+        box-shadow: 0 4px 16px rgba(233, 134, 114, 0.2);
         transition: all 0.3s ease;
     }
 
     .stats-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 6px 20px rgba(233, 134, 114, 0.3);
     }
 
     .table-row {
@@ -60,7 +60,7 @@
     }
 
     .table-row:hover {
-        background-color: rgba(136, 166, 211, 0.05);
+        background-color: rgba(233, 134, 114, 0.05);
         border-left-color: var(--primary-color);
     }
 
@@ -72,23 +72,24 @@
     }
 
     .badge-tipo {
-        background: rgba(136, 166, 211, 0.1);
-        color: var(--accent-color);
+        background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        color: #8b5cf6;
+        border: 1px solid #c4b5fd;
     }
 
     .badge-monto {
-        background: rgba(74, 115, 184, 0.1);
+        background: rgba(199, 90, 71, 0.1);
         color: var(--accent-color);
         font-family: 'Courier New', monospace;
     }
 
     .badge-fecha {
-        background: rgba(165, 191, 219, 0.1);
+        background: rgba(242, 168, 152, 0.1);
         color: var(--secondary-color);
     }
 
     .badge-boleta {
-        background: rgba(107, 140, 199, 0.1);
+        background: rgba(213, 116, 94, 0.1);
         color: var(--accent-color);
         font-family: 'Courier New', monospace;
     }
@@ -97,9 +98,8 @@
 <!-- Header simple sin recuadro -->
 <div class="flex justify-between items-center mb-6">
     <div>
-        <h1 class="text-3xl font-bold text-gray-800 flex items-center">
-            <i class='bx bx-wallet mr-3 text-4xl'></i>
-            GASTOS VARIABLES
+        <h1 class="text-2xl font-bold text-gray-800">
+            Gastos Variables
         </h1>
         <p class="text-gray-600 mt-2">Administra y controla todos los gastos variables del hotel</p>
     </div>
@@ -140,57 +140,24 @@
         <table class="min-w-full bg-white">
             <thead class="bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
                 <tr>
+                    <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Tipo de Gasto</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Monto</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Método Pago</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Turno</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Fecha</th>
                     <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Comprobante</th>
-                    <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Acciones</th> 
+                     
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200" id="tableBody">
                 @forelse($gastos as $g)
                     <tr class="table-row" data-search="{{ strtolower($g->tipo . ' ' . $g->monto . ' ' . $g->fecha_gasto . ' ' . ($g->comprobante ?? '') . ' ' . ($g->turno == 0 ? 'dia' : 'noche')) }}">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="badge badge-tipo">{{ $g->tipo }}</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="badge badge-monto">S/{{ number_format($g->monto, 2) }}</span>
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ $g->met_pago }}
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                            @if($g->turno == 0)
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    <i class='bx bx-sun mr-1'></i>
-                                    Día
-                                </span>
-                            @else
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    <i class='bx bx-moon mr-1'></i>
-                                    Noche
-                                </span>
-                            @endif
-                        </td>
-
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="badge badge-fecha">{{ \Carbon\Carbon::parse($g->fecha_gasto)->format('d/m/Y') }}</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @if(isset($g->comprobante) && $g->comprobante)
-                                <span class="badge badge-boleta">{{ $g->comprobante }}</span>
-                            @else
-                                <span class="text-gray-400 text-sm">Sin código</span>
-                            @endif
-                        </td>
+                        <!-- ACCIONES (primera columna) -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex items-center space-x-2">
                                 <a href="{{ route('gastos.edit', $g->id_gasto) }}"
-                                   class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
+                                class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
                                     <i class='bx bx-edit mr-1'></i>
                                     Editar
                                 </a>
@@ -206,6 +173,50 @@
                                     </button>
                                 </form>
                             </div>
+                        </td>
+
+                        <!-- TIPO DE GASTO -->
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="badge badge-tipo">{{ $g->tipo }}</span>
+                        </td>
+
+                        <!-- MONTO -->
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="badge badge-monto">S/{{ number_format($g->monto, 2) }}</span>
+                        </td>
+
+                        <!-- MÉTODO PAGO -->
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            {{ $g->met_pago }}
+                        </td>
+
+                        <!-- TURNO -->
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                            @if($g->turno == 0)
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <i class='bx bx-sun mr-1'></i>
+                                    Día
+                                </span>
+                            @else
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    <i class='bx bx-moon mr-1'></i>
+                                    Noche
+                                </span>
+                            @endif
+                        </td>
+
+                        <!-- FECHA -->
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="badge badge-fecha">{{ \Carbon\Carbon::parse($g->fecha_gasto)->format('d/m/Y') }}</span>
+                        </td>
+
+                        <!-- COMPROBANTE -->
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @if(isset($g->comprobante) && $g->comprobante)
+                                <span class="badge badge-boleta">{{ $g->comprobante }}</span>
+                            @else
+                                <span class="text-gray-400 text-sm">Sin código</span>
+                            @endif
                         </td>
                     </tr>
                 @empty

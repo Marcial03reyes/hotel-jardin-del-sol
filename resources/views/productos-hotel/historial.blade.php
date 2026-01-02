@@ -294,14 +294,14 @@
         </div>
 
         <!-- Información sobre frecuencias -->
-        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-md p-4">
+        <div class="mt-6 border rounded-md p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
             <div class="flex">
                 <div class="flex-shrink-0">
-                    <i class='bx bx-info-circle text-blue-400 text-xl'></i>
+                    <i class='bx bx-info-circle text-xl' style="color: #E98672;"></i>
                 </div>
                 <div class="ml-3">
-                    <h4 class="text-sm font-medium text-blue-800 mb-2">Cómo interpretar la frecuencia de compra</h4>
-                    <div class="text-sm text-blue-700 space-y-1">
+                    <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Cómo interpretar la frecuencia de compra</h4>
+                    <div class="text-sm space-y-1" style="color: #C85A47;">
                         <p>• <strong>Frecuencia de compra:</strong> Promedio de días entre compras basado en el historial</p>
                         <p>• <strong>Días desde anterior:</strong> Tiempo transcurrido entre cada compra consecutiva</p>
                         <p>• <strong>Estado:</strong> Indicador visual basado en la frecuencia promedio y días desde última compra</p>

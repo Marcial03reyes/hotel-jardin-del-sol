@@ -10,7 +10,7 @@
             <p class="mt-1 text-sm text-gray-600">Gestiona los horarios de trabajo de todo el personal</p>
         </div>
         <div class="mt-4 sm:mt-0 flex space-x-3">
-            <a href="{{ route('horarios.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center">
+            <a href="{{ route('horarios.create') }}" class="text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center" style="background-color: #E98672;" onmouseover="this.style.backgroundColor='#D4735E'" onmouseout="this.style.backgroundColor='#E98672'">
                 <i class="bx bx-plus mr-2"></i>
                 Asignar Horario
             </a>
@@ -22,7 +22,7 @@
 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 rounded-lg overflow-hidden mb-6">
     <div class="p-6 border-b border-gray-100">
         <h2 class="text-lg font-semibold text-gray-900 flex items-center">
-            <i class="bx bx-calendar mr-2 text-blue-600"></i>
+            <i class="bx bx-calendar mr-2" style="color: #E98672;"></i>
             Cronograma Semanal
         </h2>
     </div>

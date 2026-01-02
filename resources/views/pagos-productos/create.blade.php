@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Registrar Venta de Bodega - Hotel Romance')
+@section('title', 'Registrar Venta de Bodega - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores coral Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3;
-        --secondary-color: #6B8CC7;
-        --tertiary-color: #A5BFDB;
-        --accent-color: #4A73B8;
-        --light-blue: #C8D7ED;
-        --sidebar-bg: #f4f8fc;
-        --hover-bg: #88A6D3;
-        --gradient-start: #88A6D3;
-        --gradient-end: #6B8CC7;
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .form-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, #FFFDF5 0%, #FEF9CB 100%);
     }
     
     .input-field:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         outline: none;
     }
     
@@ -36,7 +36,7 @@
     .btn-romance:hover {
         background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
     }
     
     .btn-secondary {
@@ -111,7 +111,7 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-plus-circle mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-plus-circle mr-2' style="color: #E98672;"></i>
                     Nueva Venta de Bodega
                 </h1>
                 <p class="text-gray-600">Registra una venta de productos por día y turno</p>
@@ -119,7 +119,7 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('pagos-productos.index') }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('pagos-productos.index') }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver a registro de bodega
             </a>
@@ -152,7 +152,7 @@
             <!-- Fecha y Turno -->
             <div class="field-group">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-calendar mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-calendar mr-2' style="color: #E98672;"></i>
                     Fecha y Turno
                 </h2>
                 
@@ -196,7 +196,7 @@
                     <!-- Tipo de Registro (Consumo Interno) -->
                     <div class="field-group">
                         <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                            <i class='bx bx-info-circle mr-2' style="color: #6B8CC7;"></i>
+                            <i class='bx bx-info-circle mr-2' style="color: #E98672;"></i>
                             Tipo de Registro
                         </h2>
                         
@@ -226,7 +226,7 @@
             <!-- Información del Producto -->
             <div class="field-group">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-package mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-package mr-2' style="color: #E98672;"></i>
                     Información del Producto
                 </h2>
                 
@@ -274,13 +274,13 @@
                         </div>
                     </div>
 
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="border rounded-lg p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
                         <div class="flex items-center justify-between">
                             <span class="text-sm font-medium text-gray-700">
                                 <i class='bx bx-calculator mr-1'></i>
                                 Total:
                             </span>
-                            <span class="text-2xl font-bold text-blue-600" id="total-venta">S/ 0.00</span>
+                            <span class="text-2xl font-bold" style="color: #C85A47;" id="total-venta">S/ 0.00</span>
                         </div>
                     </div>
                 </div>
@@ -290,11 +290,14 @@
             <div class="field-group lg:col-span-2">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-lg font-semibold text-gray-800 flex items-center">
-                        <i class='bx bx-credit-card mr-2' style="color: #6B8CC7;"></i>
+                        <i class='bx bx-credit-card mr-2' style="color: #E98672;"></i>
                         Información de Pago
                     </h2>
                     <button type="button" id="btn-add-pago" 
-                            class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                            class="inline-flex items-center text-white px-4 py-2 rounded-lg text-sm transition-all"
+                            style="background-color: #E98672;"
+                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                            onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-plus mr-2'></i>
                         Agregar Método de Pago
                     </button>

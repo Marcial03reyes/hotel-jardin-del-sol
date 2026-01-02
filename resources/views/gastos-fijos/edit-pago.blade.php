@@ -10,13 +10,13 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-edit mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-edit mr-2' style="color: #E98672;"></i>
                     Editar Pago
                 </h1>
                 <p class="text-gray-600">{{ $gastoFijo->nombre_servicio }}</p>
             </div>
             <div class="flex items-center space-x-2">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style="background-color: #FEF9CB; color: #C85A47;">
                     <i class='bx bx-calendar mr-1'></i>
                     {{ \Carbon\Carbon::parse($pago->fecha_pago)->format('d/m/Y') }}
                 </span>
@@ -24,7 +24,7 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver al historial
             </a>
@@ -55,7 +55,7 @@
 
         <div class="bg-white p-6 rounded-lg shadow-sm border">
             <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <i class='bx bx-receipt mr-2' style="color: #6B8CC7;"></i>
+                <i class='bx bx-receipt mr-2' style="color: #E98672;"></i>
                 Información del Pago
             </h2>
             
@@ -177,7 +177,10 @@
             </a>
             
             <button type="submit" 
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center">
+                    class="text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center"
+                    style="background-color: #E98672;" 
+                    onmouseover="this.style.backgroundColor='#D4735E'" 
+                    onmouseout="this.style.backgroundColor='#E98672'">
                 <i class='bx bx-save mr-2'></i>
                 Actualizar Pago
             </button>

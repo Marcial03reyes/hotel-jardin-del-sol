@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Agregar Registro - Hotel Romance')
+@section('title', 'Agregar Registro - Hotel Jardín del Sol')
 
 @section('content')
 <div class="container mx-auto py-6 px-4">
@@ -10,7 +10,7 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-plus-circle mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-plus-circle mr-2' style="color: var(--primary-color);"></i>
                     Nuevo Registro de Huésped
                 </h1>
                 <p class="text-gray-600">Registra el ingreso de un nuevo huésped al Hotel Romance</p>
@@ -53,7 +53,7 @@
             <!-- Información del Cliente -->
             <div class="bg-white p-6 rounded-lg shadow-sm border">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-user mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-user mr-2' style="color: var(--primary-color);"></i>
                     Información del Cliente
                 </h2>
                 
@@ -69,7 +69,8 @@
                                    placeholder="DNI o Carnet de Extranjería" 
                                    required maxlength="20">
                             <button type="button" id="btn-verificar" 
-                                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg font-medium transition-all">
+                                    class="text-white px-4 py-3 rounded-lg font-medium transition-all"
+                                    style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
                                 <i class='bx bx-search mr-1'></i>
                                 Verificar
                             </button>
@@ -91,7 +92,8 @@
                                    placeholder="Nombre completo del huésped" 
                                    maxlength="100">
                             <button type="button" id="btn-guardar-cliente" style="display: none;"
-                                    class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-lg font-medium transition-all">
+                                    class="text-white px-4 py-3 rounded-lg font-medium transition-all"
+                                    style="background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));">
                                 <i class='bx bx-plus mr-1'></i>
                                 Guardar Cliente
                             </button>
@@ -165,7 +167,7 @@
             <!-- Selector de Turno -->
             <div class="bg-white p-6 rounded-lg shadow-sm border">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-sun mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-sun mr-2' style="color: var(--primary-color);"></i>
                     Turno de Trabajo
                 </h2>
                 
@@ -223,7 +225,7 @@
             <!-- Detalles de la Estadía -->
             <div class="bg-white p-6 rounded-lg shadow-sm border col-span-2">
                 <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                    <i class='bx bx-bed mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-bed mr-2' style="color: var(--primary-color);"></i>
                     Detalles de la Estadía
                 </h2>
                 
@@ -306,7 +308,8 @@
                     Información de Pago de la Habitación
                 </h2>
                 <button type="button" id="btn-add-pago" 
-                        class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-all">
+                        class="inline-flex items-center text-white px-4 py-2 rounded-lg text-sm transition-all"
+                        style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
                     <i class='bx bx-plus mr-2'></i>
                     Agregar Método de Pago
                 </button>
@@ -434,7 +437,8 @@
             </a>
             
             <button type="submit" 
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all">
+                    class="text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all"
+                    style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
                 <i class='bx bx-save mr-2'></i>
                 Guardar Registro
             </button>
@@ -444,106 +448,128 @@
 
 <!-- CSS Personalizado -->
 <style>
-.step {
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-}
 
-.step.active .w-8 {
-    background-color: #3b82f6;
-    color: white;
-}
+    /* Variables de colores Hotel Jardín del Sol */
+    :root {
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
+    }
 
-.step.completed .w-8 {
-    background-color: #10b981;
-    color: white;
-}
+    .step {
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
 
-.step.inactive .w-8 {
-    background-color: #d1d5db;
-    color: #6b7280;
-}
+    .step.active .w-8 {
+        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+        color: white;
+    }
 
-.cliente-status {
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
+    .step.completed .w-8 {
+        background-color: #10b981;
+        color: white;
+    }
 
-.cliente-found {
-    background-color: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
-}
+    .step.inactive .w-8 {
+        background-color: #d1d5db;
+        color: #6b7280;
+    }
 
-.cliente-new {
-    background-color: #fef3c7;
-    color: #92400e;
-    border: 1px solid #fde68a;
-}
+    .cliente-status {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
 
-.pago-item {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    position: relative;
-}
+    .cliente-found {
+        background-color: #dcfce7;
+        color: #166534;
+        border: 1px solid #bbf7d0;
+    }
 
-.total-display {
-    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-    border: 2px solid #0ea5e9;
-    color: #0c4a6e;
-}
+    .cliente-new {
+        background-color: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+    }
 
-.alert-warning {
-    background: #fef3c7;
-    border: 1px solid #f59e0b;
-    color: #92400e;
-}
+    .pago-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
 
-.radio-azul {
-    accent-color: #6B8CC7;
-}
+    .total-display {
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border: 2px solid #0ea5e9;
+        color: #0c4a6e;
+    }
 
-.turno-button {
-    transition: all 0.3s ease;
-    position: relative;
-}
+    .alert-warning {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        color: #92400e;
+    }
 
-.turno-radio:checked + .turno-button.turno-dia {
-    border-color: #f59e0b;
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-    transform: translateY(-2px);
-}
+    .radio-azul {
+        accent-color: var(--primary-color);
+    }
 
-.turno-radio:checked + .turno-button.turno-noche {
-    border-color: #3b82f6;
-    background: linear-gradient(135deg, #dbeafe, #93c5fd);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
-}
+    .turno-button {
+        transition: all 0.3s ease;
+        position: relative;
+    }
 
-.turno-radio:checked + .turno-button::after {
-    content: '✓';
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #10b981;
-    color: white;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-}
+    .turno-radio:checked + .turno-button.turno-dia {
+        border-color: #f59e0b;
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .turno-radio:checked + .turno-button.turno-noche {
+        border-color: #3b82f6;
+        background: linear-gradient(135deg, #dbeafe, #93c5fd);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .turno-radio:checked + .turno-button::after {
+        content: '✓';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #10b981;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .input-field:focus,
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1) !important;
+    }
 
 </style>
 
@@ -678,7 +704,9 @@ document.addEventListener('DOMContentLoaded', function() {
         btnGuardarCliente.style.display = 'none';
         
         btnVerificar.disabled = false;
-        btnVerificar.className = 'bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-lg font-medium transition-all';
+        btnVerificar.className = 'text-white px-4 py-3 rounded-lg font-medium cursor-default';
+        btnVerificar.style.background = 'linear-gradient(135deg, #10b981, #059669)'; // Para verificado
+        btnVerificar.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)'; // Para cliente nuevo
         btnVerificar.innerHTML = '<i class="bx bx-search mr-1"></i> Verificar';
         
         nombreHelp.textContent = 'Presiona "Verificar" para buscar el cliente en la base de datos';
@@ -883,11 +911,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class='bx bx-check-circle text-green-600 text-lg mr-2'></i>
                             <div>
                                 <strong class="text-green-800">Cliente encontrado:</strong> ${data.nombre_apellido}
-                                <br><small class="text-green-600">… Información completada automÃ¡ticamente</small>
+                                <br><small class="text-green-600"> Información completada automaticamente</small>
                             </div>
                         </div>
                     `;
-                    nombreHelp.textContent = '… Cliente existente - Campo completado automÃ¡ticamente';
+                    nombreHelp.textContent = 'Cliente existente - Campo completado automaticamente';
                     updateStepStatus(1, 'completed');
                     
                     btnVerificar.innerHTML = '<i class="bx bx-check mr-1"></i> Verificado';

@@ -1,42 +1,42 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Cliente - Hotel Romance')
+@section('title', 'Editar Cliente - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
     /* Paleta de colores azul Hotel Romance */
     :root {
-        --primary-color: #88A6D3;      /* Azul principal */
-        --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-        --accent-color: #4A73B8;       /* Azul de acento oscuro */
-        --light-blue: #C8D7ED;         /* Azul muy claro */
-        --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3;           /* Color hover */
-        --gradient-start: #88A6D3;     /* Inicio gradiente */
-        --gradient-end: #6B8CC7;       /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .form-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, #FFFDF5 0%, #FEF9CB 100%);
     }
-    
+
     .input-field:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
         outline: none;
+    }
+
+    .btn-romance:hover {
+        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
     }
     
     .btn-romance {
         background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
         transition: all 0.3s ease;
-    }
-    
-    .btn-romance:hover {
-        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
     }
     
     .btn-secondary {
@@ -95,7 +95,7 @@
 
     /* Información adicional con tema azul */
     .info-box {
-        background-color: #f0f7ff;
+        background-color: #FEF9CB;
         border-color: var(--light-blue);
     }
 

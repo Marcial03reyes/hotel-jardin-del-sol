@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cuadre Caja - Hotel Romance')
+@section('title', 'Cuadre Caja - Hotel Jardín del Sol')
 
 @section('content')
 
@@ -31,8 +31,8 @@
                     </div>
                     <div class="pt-6">
                         <button type="submit" 
-                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium">
-                            <i class='bx bx-search mr-2'></i>
+                            class="px-6 py-3 bg-coral-600 text-white rounded-lg hover:bg-coral-700 transition-colors duration-200 font-medium"
+                            style="background-color: #E98672; hover:background-color: #D4735E;">
                             Consultar
                         </button>
                     </div>
@@ -221,8 +221,8 @@
                                         S/ {{ number_format($resumenFinal['bodega']['cuenta'], 0, ',', ',') }}
                                     </td>
                                 </tr>
-                                <tr class="bg-blue-100 font-bold text-xl">
-                                    <td class="border border-gray-300 px-6 py-4 text-blue-800">TOTAL</td>
+                                <tr class="font-bold text-xl" style="background-color: #FEF9CB;">
+                                    <td class="border border-gray-300 px-6 py-4" style="color: #C85A47;">TOTAL</td>
                                     <td colspan="2" class="border border-gray-300 px-6 py-4 text-center text-2xl font-bold {{ $resumenFinal['totales']['total'] >= 0 ? 'text-green-600' : 'text-red-600' }}">
                                         S/ {{ number_format($resumenFinal['totales']['total'], 0, ',', ',') }}
                                     </td>

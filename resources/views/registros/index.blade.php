@@ -1,30 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Registros - Hotel Romance')
+@section('title', 'Registros - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores azul Hotel Jardín */
     :root {
-        --primary-color: #88A6D3;      /* Azul principal */
-        --secondary-color: #6B8CC7;    /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB;     /* Azul terciario más claro */
-        --accent-color: #4A73B8;       /* Azul de acento oscuro */
-        --light-blue: #C8D7ED;         /* Azul muy claro */
-        --sidebar-bg: #f4f8fc;         /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3;           /* Color hover */
-        --gradient-start: #88A6D3;     /* Inicio gradiente */
-        --gradient-end: #6B8CC7;       /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
 
     .table-container {
-        background: linear-gradient(135deg, #f4f8fc 0%, #e8f2ff 100%);
+        background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
     }
-    
+
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
+    }
+
+    .table-row:hover {
+        background-color: var(--sidebar-bg);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(233, 134, 114, 0.1);
+        transition: all 0.2s ease;
     }
     
     .btn-romance {
@@ -37,14 +44,7 @@
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
     }
-    
-    .table-row:hover {
-        background-color: #f4f8fc;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(136, 166, 211, 0.1);
-        transition: all 0.2s ease;
-    }
-    
+        
     .badge {
         display: inline-flex;
         align-items: center;
@@ -55,8 +55,8 @@
     }
     
     .badge-habitacion {
-        background-color: #e8f2ff;
-        color: var(--accent-color);
+        background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        color: #8b5cf6;
     }
     
     .badge-si {
@@ -79,7 +79,6 @@
         color: #1d4ed8;
     }
 
-    /* Estadísticas con colores azules */
     .stats-total {
         color: var(--secondary-color);
     }
@@ -208,20 +207,31 @@
             <form method="GET" action="{{ route('registros.index') }}" id="filtroForm" class="flex flex-wrap gap-4 items-end">
                 <!-- Botones de período rápido -->
                 <div class="flex gap-2">
+                    <!-- Botón Hoy -->
                     <button type="submit" name="filtro" value="hoy"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'hoy' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'hoy' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}" 
+                        style="{{ request('filtro', 'todos') === 'hoy' ? 'background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));' : '' }}">
                         Hoy
                     </button>
+
+                    <!-- Botón Esta Semana -->
                     <button type="submit" name="filtro" value="semana"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'semana' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'semana' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro') === 'semana' ? 'background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));' : '' }}">
                         Esta Semana
                     </button>
+
+                    <!-- Botón Personalizado -->
                     <button type="button" id="personalizadoBtn"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'personalizado' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro') === 'personalizado' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro') === 'personalizado' ? 'background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));' : '' }}">
                         Personalizado
                     </button>
+
+                    <!-- Botón Todos -->
                     <button type="submit" name="filtro" value="todos"
-                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'todos' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                        class="px-4 py-2 text-sm rounded-lg font-medium transition-colors duration-200 {{ request('filtro', 'todos') === 'todos' ? 'text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}"
+                        style="{{ request('filtro', 'todos') === 'todos' ? 'background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));' : '' }}">
                         Todos
                     </button>
                 </div>
@@ -241,7 +251,7 @@
                             class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <button type="submit" name="filtro" value="personalizado"
-                        class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors duration-200">
+                        class="px-4 py-2 text-white rounded-lg text-sm font-medium transition-colors duration-200 btn-romance">
                         Filtrar
                     </button>
                 </div>
@@ -307,7 +317,7 @@
                                 <div class="flex items-center space-x-2">
                                     <!-- Botón de editar -->
                                     <a href="{{ route('registros.edit', $r->id_estadia) }}"
-                                    class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-xs rounded-full hover:bg-blue-200 transition-colors">
+                                    class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
                                         <i class='bx bx-edit mr-1'></i>
                                         Editar
                                     </a>
@@ -472,14 +482,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle visibility
             fechasPersonalizadas.classList.toggle('hidden');
             
-            // Actualizar apariencia del botón
+            // Apariencia del botón
             if (fechasPersonalizadas.classList.contains('hidden')) {
-                this.classList.remove('bg-blue-600', 'text-white');
+                this.classList.remove('text-white');
                 this.classList.add('bg-gray-100', 'text-gray-700');
+                this.style.background = '';
                 console.log('Ocultando campos de fecha');
             } else {
                 this.classList.remove('bg-gray-100', 'text-gray-700');
-                this.classList.add('bg-blue-600', 'text-white');
+                this.classList.add('text-white');
+                this.style.background = 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))';
                 console.log('Mostrando campos de fecha');
             }
         });

@@ -14,7 +14,10 @@
                 </div>
                 <div class="flex space-x-3">
                     <a href="{{ route('productos-hotel.create-producto') }}" 
-                       class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 transition-colors">
+                        class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                        style="background-color: #E98672;"
+                        onmouseover="this.style.backgroundColor='#D4735E'" 
+                        onmouseout="this.style.backgroundColor='#E98672'">
                         <i class='bx bx-plus mr-2'></i>
                         Nuevo Producto
                     </a>
@@ -53,7 +56,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
+                    <thead class="sticky top-0 z-10" style="background: linear-gradient(135deg, #F2A898, #E98672); color: white;">    
                         <tr>
                             <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Producto</th>
                             <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Frecuencia de Compra</th>
@@ -105,7 +108,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex items-center justify-end space-x-2">
                                         <a href="{{ route('productos-hotel.historial', $producto->id_prod_hotel) }}" 
-                                           class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-xs rounded-full hover:bg-blue-200 transition-colors" title="Ver historial">
+                                            class="inline-flex items-center bg-blue-100 text-blue-700 px-3 py-1 text-xs rounded-full hover:bg-blue-200 transition-colors" 
+                                            title="Ver historial">
                                             <i class='bx bx-history mr-1'></i>
                                             Historial
                                         </a>
@@ -146,7 +150,10 @@
                                         <p class="text-lg font-medium">No hay productos registrados</p>
                                         <p class="text-sm">Comienza agregando tu primer producto de hotel</p>
                                         <a href="{{ route('productos-hotel.create-producto') }}" 
-                                           class="inline-flex items-center mt-4 px-4 py-2 bg-blue-600 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-blue-700 transition-colors">
+                                            class="inline-flex items-center mt-4 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors"
+                                            style="background-color: #E98672;"
+                                            onmouseover="this.style.backgroundColor='#D4735E'" 
+                                            onmouseout="this.style.backgroundColor='#E98672'">
                                             <i class='bx bx-plus mr-2'></i>
                                             Crear Primer Producto
                                         </a>
@@ -160,14 +167,14 @@
         </div>
 
         <!-- Información sobre frecuencias -->
-        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-md p-4">
+        <div class="mt-6 border rounded-md p-4" style="background-color: #FEF9CB; border-color: #F2A898;">
             <div class="flex">
                 <div class="flex-shrink-0">
-                    <i class='bx bx-info-circle text-blue-400 text-xl'></i>
+                    <i class='bx bx-info-circle text-xl' style="color: #E98672;"></i>
                 </div>
                 <div class="ml-3">
-                    <h4 class="text-sm font-medium text-blue-800 mb-2">Sobre la frecuencia de compra</h4>
-                    <div class="text-sm text-blue-700 space-y-1">
+                    <h4 class="text-sm font-medium mb-2" style="color: #C85A47;">Sobre la frecuencia de compra</h4>
+                    <div class="text-sm space-y-1" style="color: #C85A47;">
                         <p>• La frecuencia de compra se calcula automáticamente basándose en el historial de compras</p>
                         <p>• Se requieren al menos 2 compras para calcular la frecuencia promedio</p>
                     </div>

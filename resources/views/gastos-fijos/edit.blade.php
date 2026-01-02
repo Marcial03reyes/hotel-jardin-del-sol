@@ -9,13 +9,13 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">
-                    <i class='bx bx-edit mr-2' style="color: #6B8CC7;"></i>
+                    <i class='bx bx-edit mr-2' style="color: #E98672;"></i>
                     Editar Servicio
                 </h1>
                 <p class="text-gray-600">Modifica la información del servicio de gasto fijo</p>
             </div>
             <div class="flex items-center space-x-2">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style="background-color: #FEF9CB; color: #C85A47;">
                     <i class='bx bx-receipt mr-1'></i>
                     {{ $gastoFijo->nombre_servicio }}
                 </span>
@@ -23,12 +23,12 @@
         </div>
         
         <div class="flex items-center space-x-4 text-sm text-gray-600">
-            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.index') }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-arrow-back mr-1'></i>
                 Volver a gastos fijos
             </a>
             <span>•</span>
-            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center hover:text-blue-600 transition-colors">
+            <a href="{{ route('gastos-fijos.historial', $gastoFijo->id_gasto_fijo) }}" class="inline-flex items-center text-gray-700 transition-colors" onmouseover="this.style.color='#E98672'" onmouseout="this.style.color='#374151'">
                 <i class='bx bx-history mr-1'></i>
                 Ver historial de pagos
             </a>
@@ -56,7 +56,7 @@
             @method('PUT')
 
             <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                <i class='bx bx-receipt mr-2' style="color: #6B8CC7;"></i>
+                <i class='bx bx-receipt mr-2' style="color: #E98672;"></i>
                 Información del Servicio
             </h2>
             
@@ -136,7 +136,10 @@
                 </a>
                 
                 <button type="submit" 
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center">
+                        class="text-white px-8 py-3 rounded-lg font-medium shadow-lg transition-all inline-flex items-center"
+                        style="background-color: #E98672;" 
+                        onmouseover="this.style.backgroundColor='#D4735E'" 
+                        onmouseout="this.style.backgroundColor='#E98672'">
                     <i class='bx bx-save mr-2'></i>
                     Actualizar Servicio
                 </button>
@@ -145,10 +148,10 @@
     </div>
 
     {{-- Información adicional --}}
-    <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+    <div class="mt-6 p-4 rounded-lg" style="background-color: #FEF9CB; border: 1px solid #F2A898;">
         <div class="flex items-start">
-            <i class='bx bx-info-circle text-blue-600 text-lg mr-2 mt-1'></i>
-            <div class="text-sm text-blue-800">
+            <i class='bx bx-info-circle mr-2 mt-1' style="color: #E98672;"></i>
+            <div class="text-sm" style="color: #C85A47;">
                 <p class="font-medium mb-1">Información importante:</p>
                 <ul class="list-disc list-inside space-y-1">
                     <li>Los cambios afectarán solo a la información del servicio</li>

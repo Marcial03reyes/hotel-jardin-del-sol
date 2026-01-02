@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Trabajadores - Hotel Romance')
+@section('title', 'Trabajadores - Hotel Jardín del Sol')
 
 @section('content')
 
 <style>
-    /* Paleta de colores azul Hotel Romance */
+    /* Paleta de colores Hotel Jardín del Sol */
     :root {
-        --primary-color: #88A6D3; /* Azul principal */
-        --secondary-color: #6B8CC7; /* Azul secundario más oscuro */
-        --tertiary-color: #A5BFDB; /* Azul terciario más claro */
-        --accent-color: #4A73B8; /* Azul de acento oscuro */
-        --light-blue: #C8D7ED; /* Azul muy claro */
-        --sidebar-bg: #f4f8fc; /* Fondo sidebar azul muy suave */
-        --hover-bg: #88A6D3; /* Color hover */
-        --gradient-start: #88A6D3; /* Inicio gradiente */
-        --gradient-end: #6B8CC7; /* Fin gradiente */
+        --primary-color: #E98672;        /* Coral principal */
+        --secondary-color: #D4735E;      /* Coral más oscuro */
+        --tertiary-color: #F2A898;       /* Coral más claro */
+        --accent-color: #C85A47;         /* Coral de acento oscuro */
+        --light-blue: #FEF9CB;           /* Crema muy claro */
+        --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+        --hover-bg: #E98672;             /* Color hover */
+        --gradient-start: #E98672;       /* Inicio gradiente */
+        --gradient-end: #D4735E;         /* Fin gradiente */
     }
     
     .table-container {
         background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
     }
-    
+
     .search-input:focus {
         border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
     }
     
     .btn-romance {
@@ -41,10 +41,10 @@
     .table-row:hover {
         background-color: var(--sidebar-bg);
         transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(136, 166, 211, 0.1);
+        box-shadow: 0 2px 8px rgba(233, 134, 114, 0.1);
         transition: all 0.2s ease;
     }
-    
+
     .badge {
         display: inline-flex;
         align-items: center;
@@ -55,24 +55,26 @@
     }
     
     .badge-documento {
-        background-color: var(--light-blue);
-        color: var(--accent-color);
+        background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        color: #8b5cf6;
+        border: 1px solid #c4b5fd;
     }
-    
+
     .badge-sueldo {
         background-color: #dcfce7;
         color: #166534;
     }
-    
+
     .badge-telefono {
-        background-color: #fef3c7;
-        color: #92400e;
+        background-color: var(--tertiary-color);
+        color: var(--accent-color);
+    }
+
+    .badge-cumple {
+        background-color: var(--light-blue);
+        color: var(--secondary-color);
     }
     
-    .badge-cumple {
-        background-color: #f3e8ff;
-        color: #7c3aed;
-    }
 </style>
 
 <div class="container mx-auto py-6 px-4">
@@ -81,7 +83,7 @@
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-3xl font-bold text-gray-800 mb-2">Gestión de Trabajadores</h1>
-            <p class="text-gray-600">Administra el personal del Hotel Romance</p>
+            <p class="text-gray-600">Administra el personal del Hotel Jardín del Sol</p>
         </div>
         <a href="{{ route('trabajadores.create') }}"
            class="btn-romance text-white px-6 py-3 rounded-lg font-medium shadow-lg">
@@ -130,33 +132,65 @@
     <div class="table-container rounded-xl shadow-lg overflow-hidden">
         <div class="overflow-x-auto" style="max-height: 600px; overflow-y: auto;">
             <table class="min-w-full bg-white">
-                <thead class="bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
+                <thead class="text-white sticky top-0 z-10" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));">
                     <tr>
+                        <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">DNI/CE</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Nombre y Apellido</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Sueldo</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Fecha inicio</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Cumpleaños</th>
                         <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Teléfono</th>
-                        <th class="px-6 py-4 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
+                        
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200" id="tableBody">
                     @forelse($trabajadores as $t)
                         <tr class="table-row border-l-4 border-transparent hover:border-blue-400" data-search="{{ strtolower($t->nombre_apellido . ' ' . $t->DNI) }}" style="--hover-border-color: var(--primary-color);">
+                            <!-- ACCIONES (primera columna) -->
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <div class="flex items-center space-x-2">
+                                    <a href="{{ route('trabajadores.edit', $t->DNI) }}"
+                                    class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
+                                        <i class='bx bx-edit mr-1'></i>
+                                        Editar
+                                    </a>
+                                    
+                                    <form action="{{ route('trabajadores.destroy', $t->DNI) }}" method="POST" class="inline delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="inline-flex items-center bg-red-100 text-red-700 px-3 py-1 text-xs rounded-full hover:bg-red-200 transition-colors delete-button"
+                                                data-trabajador="{{ $t->nombre_apellido ?: $t->DNI }}">
+                                            <i class='bx bx-trash mr-1'></i>
+                                            Borrar
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
+                            <!-- DNI/CE -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="badge badge-documento font-mono">{{ $t->DNI }}</span>
                             </td>
+
+                            <!-- NOMBRE -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm font-medium text-gray-900">{{ $t->nombre_apellido ?: 'Sin nombre' }}</div>
                             </td>
+
+                            <!-- SUELDO -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="badge badge-sueldo">S/ {{ number_format($t->sueldo, 2) }}</span>
                             </td>
+
+                            <!-- FECHA INICIO -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">{{ \Illuminate\Support\Carbon::parse($t->Fecha_inicio)->format('d/m/Y') }}</div>
                                 <div class="text-xs text-gray-500">{{ \Illuminate\Support\Carbon::parse($t->Fecha_inicio)->diffForHumans() }}</div>
                             </td>
+
+                            <!-- CUMPLEAÑOS -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($t->fecha_cumple)
                                     <div class="text-sm text-gray-900">
@@ -181,28 +215,10 @@
                                     </span>
                                 @endif
                             </td>
+
+                            <!-- TELÉFONO -->
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="badge badge-telefono">{{ $t->Telef ?: 'Sin teléfono' }}</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex items-center space-x-2">
-                                    <a href="{{ route('trabajadores.edit', $t->DNI) }}"
-                                       class="inline-flex items-center bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full hover:bg-yellow-200 transition-colors">
-                                        <i class='bx bx-edit mr-1'></i>
-                                        Editar
-                                    </a>
-                                    
-                                    <form action="{{ route('trabajadores.destroy', $t->DNI) }}" method="POST" class="inline delete-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="inline-flex items-center bg-red-100 text-red-700 px-3 py-1 text-xs rounded-full hover:bg-red-200 transition-colors delete-button"
-                                                data-trabajador="{{ $t->nombre_apellido ?: $t->DNI }}">
-                                            <i class='bx bx-trash mr-1'></i>
-                                            Borrar
-                                        </button>
-                                    </form>
-                                </div>
                             </td>
                         </tr>
                     @empty

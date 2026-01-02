@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Agregar Inversión - Hotel Romance')
+@section('title', 'Agregar Inversión - Hotel Jardín del Sol')
 
 @section('content')
 
@@ -26,17 +26,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
-        /* Paleta de colores azul Hotel Romance */
+        /* Paleta de colores azul Hotel Jardín del Sol */
         :root {
-            --primary-color: #88A6D3; /* Azul principal */
-            --secondary-color: #6B8CC7; /* Azul secundario más oscuro */
-            --tertiary-color: #A5BFDB; /* Azul terciario más claro */
-            --accent-color: #4A73B8; /* Azul de acento oscuro */
-            --light-blue: #C8D7ED; /* Azul muy claro */
-            --sidebar-bg: #f4f8fc; /* Fondo sidebar azul muy suave */
-            --hover-bg: #88A6D3; /* Color hover */
-            --gradient-start: #88A6D3; /* Inicio gradiente */
-            --gradient-end: #6B8CC7; /* Fin gradiente */
+            --primary-color: #E98672;        /* Coral principal */
+            --secondary-color: #D4735E;      /* Coral más oscuro */
+            --tertiary-color: #F2A898;       /* Coral más claro */
+            --accent-color: #C85A47;         /* Coral de acento oscuro */
+            --light-blue: #FEF9CB;           /* Crema muy claro */
+            --sidebar-bg: #FFFDF5;           /* Fondo sidebar crema suave */
+            --hover-bg: #E98672;             /* Color hover */
+            --gradient-start: #E98672;       /* Inicio gradiente */
+            --gradient-end: #D4735E;         /* Fin gradiente */
         }
 
         /* Contenedor principal del formulario*/
@@ -44,8 +44,8 @@
             background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--light-blue) 100%);
             border-radius: 1rem;
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(136, 166, 211, 0.1);
-            border: 1px solid rgba(136, 166, 211, 0.2);
+            box-shadow: 0 4px 20px rgba(233, 134, 114, 0.1);
+            border: 1px solid rgba(233, 134, 114, 0.2);
         }
 
         /* Estilos para inputs */
@@ -59,7 +59,7 @@
 
         .input-field:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(136, 166, 211, 0.1);
+            box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1);
             outline: none;
             background-color: white;
         }
@@ -82,7 +82,7 @@
         .btn-romance:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.4);
+            box-shadow: 0 4px 16px rgba(233, 134, 114, 0.4);
         }
 
         /* Botón secundario (Cancelar) */
@@ -111,16 +111,6 @@
             display: block;
         }
 
-        /* Header personalizado */
-        .page-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(136, 166, 211, 0.3);
-        }
-
         /* Mensajes de error */
         .error-container {
             background: linear-gradient(135deg, #fee2e2, #fecaca);
@@ -142,7 +132,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.25rem;
-            box-shadow: 0 4px 12px rgba(136, 166, 211, 0.3);
+            box-shadow: 0 4px 12px rgba(233, 134, 114, 0.3);
         }
 
         /* Animación sutil para el contenedor */
@@ -163,8 +153,8 @@
 
         /* Estilos para los tips informativos */
         .info-tip {
-            background: rgba(136, 166, 211, 0.05);
-            border: 1px solid rgba(136, 166, 211, 0.2);
+            background: rgba(233, 134, 114, 0.05);
+            border: 1px solid rgba(233, 134, 114, 0.2);
             border-radius: 0.75rem;
             padding: 1rem;
         }
@@ -208,14 +198,14 @@
         <div class="max-w-4xl mx-auto mt-1">
             
             <!-- Header de la página -->
-            <div class="page-header">
+            <div class="mb-6">
                 <div class="flex items-center">
                     <div class="floating-icon mr-4">
                         <i class='bx bx-trending-up'></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold">Agregar Nueva Inversión</h1>
-                        <p class="text-blue-100 mt-1">Registra una nueva inversión de la empresa con todos los detalles necesarios</p>
+                        <h1 class="text-2xl font-bold text-gray-800">Agregar Nueva Inversión</h1>
+                        <p class="text-gray-600 mt-1">Registra una nueva inversión de la empresa con todos los detalles necesarios</p>
                     </div>
                 </div>
             </div>

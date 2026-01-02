@@ -472,7 +472,7 @@ class FactRegistroClienteController extends Controller
         $pdf = Pdf::loadView('exports.huespedes-pdf', compact('registros'))
                 ->setPaper('a4', 'landscape');
         
-        return $pdf->download('libro_huespedes.pdf');
+        return $pdf->download('libro_huespedes_jardindelsol.pdf');
     }
 
     /**

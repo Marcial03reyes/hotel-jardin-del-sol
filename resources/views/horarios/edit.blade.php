@@ -95,9 +95,9 @@
             </div>
 
             <!-- Vista previa del horario -->
-            <div id="horario-preview" class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <h4 class="font-medium text-blue-900 mb-2">Vista previa del horario:</h4>
-                <div id="preview-content" class="text-blue-800"></div>
+            <div id="horario-preview" class="mb-6 p-4 border rounded-lg" style="background-color: #FEF9CB; border-color: #F2A898;">
+                <h4 class="font-medium mb-2" style="color: #C85A47;">Vista previa del horario:</h4>
+                <div id="preview-content" style="color: #C85A47;"></div>
             </div>
 
             <!-- Botones -->
@@ -105,7 +105,7 @@
                 <a href="{{ route('horarios.index') }}" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition-all">
                     Cancelar
                 </a>
-                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all flex items-center">
+                <button type="submit" class="text-white px-6 py-2 rounded-lg transition-all flex items-center" style="background-color: #E98672;" onmouseover="this.style.backgroundColor='#D4735E'" onmouseout="this.style.backgroundColor='#E98672'">
                     <i class="bx bx-save mr-2"></i>
                     Actualizar Horario
                 </button>
