@@ -91,9 +91,8 @@
                                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
                                    placeholder="Nombre completo del huésped" 
                                    maxlength="100">
-                            <button type="button" id="btn-guardar-cliente" style="display: none;"
-                                    class="text-white px-4 py-3 rounded-lg font-medium transition-all"
-                                    style="background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));">
+                            <button type="button" id="btn-guardar-cliente" 
+                                    class="btn-guardar-cliente text-white px-4 py-3 rounded-lg font-medium transition-all">
                                 <i class='bx bx-plus mr-1'></i>
                                 Guardar Cliente
                             </button>
@@ -571,6 +570,11 @@
         box-shadow: 0 0 0 3px rgba(233, 134, 114, 0.1) !important;
     }
 
+    .btn-guardar-cliente {
+        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        display: none;
+    }
+
 </style>
 
 <!-- JavaScript Principal -->
@@ -941,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class='bx bx-user-plus text-orange-600 text-lg mr-2'></i>
                             <div>
                                 <strong class="text-orange-800">Cliente nuevo</strong>
-                                <br><small class="text-orange-600">âš ï¸ Completa el nombre y guarda el cliente</small>
+                                <br><small class="text-orange-600">Completa el nombre y guarda el cliente</small>
                             </div>
                         </div>
                     `;
@@ -1033,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class='bx bx-check-circle text-green-600 text-lg mr-2'></i>
                             <div>
                                 <strong class="text-green-800">Cliente guardado:</strong> ${nombre}
-                                <br><small class="text-green-600">âœ… Cliente registrado en la base de datos</small>
+                                <br><small class="text-green-600">Cliente registrado en la base de datos</small>
                             </div>
                         </div>
                     `;
