@@ -140,22 +140,7 @@ Route::middleware('auth')->group(function () {
         
         return response()->json(['ok' => false, 'message' => 'Cliente no encontrado']);
     })->name('clientes.lookup');
-});
 
-/*
-|--------------------------------------------------------------------------
-| RUTAS SOLO PARA ADMINISTRADORES
-|--------------------------------------------------------------------------
-*/
-
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    
-    /*
-    |----------------------------------------------------------------------
-    | GESTIÓN FINANCIERA - SOLO ADMINISTRADORES
-    |----------------------------------------------------------------------
-    */
-    
     // GASTOS GENERALES
     Route::prefix('gastos')->name('gastos.')->group(function () {
         Route::get('/', [FactGastoGeneralController::class, 'index'])->name('index');
@@ -168,7 +153,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // Eliminación múltiple
         Route::delete('multiple', [FactGastoGeneralController::class, 'destroyMultiple'])->name('destroy.multiple');
     });
-    
+
     // GASTOS FIJOS 
     Route::prefix('gastos-fijos')->name('gastos-fijos.')->group(function () {
         // Lista principal
@@ -199,64 +184,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('{id}/pago/{pagoId}/comprobante', [GastosFijosController::class, 'verComprobante'])->name('ver-comprobante');
     });
 
-    // COMPROBANTES SUNAT
-    Route::prefix('sunat')->name('sunat.')->group(function () {
-        Route::get('/', [FactSunatController::class, 'index'])->name('index');
-        Route::get('create', [FactSunatController::class, 'create'])->name('create');
-        Route::post('/', [FactSunatController::class, 'store'])->name('store');
-        Route::get('{id}/edit', [FactSunatController::class, 'edit'])->name('edit');
-        Route::put('{id}', [FactSunatController::class, 'update'])->name('update');
-        Route::delete('{id}', [FactSunatController::class, 'destroy'])->name('destroy');
-        
-        // Funcionalidades adicionales
-        Route::delete('multiple', [FactSunatController::class, 'destroyMultiple'])->name('destroy.multiple');
-        Route::get('{id}/archivo', [FactSunatController::class, 'showArchivo'])->name('archivo');
-        Route::get('{id}/archivo/download', [FactSunatController::class, 'downloadArchivo'])->name('archivo.download');
-    });
-
-    // INVERSIONES 
-    Route::prefix('inversiones')->name('inversiones.')->group(function () {
-        Route::get('/', [FactInversionController::class, 'index'])->name('index');
-        Route::get('create', [FactInversionController::class, 'create'])->name('create');
-        Route::post('/', [FactInversionController::class, 'store'])->name('store');
-        Route::get('{id}/edit', [FactInversionController::class, 'edit'])->name('edit');
-        Route::put('{id}', [FactInversionController::class, 'update'])->name('update');
-        Route::delete('{id}', [FactInversionController::class, 'destroy'])->name('destroy');
-        
-        // Eliminación múltiple
-        Route::delete('multiple', [FactInversionController::class, 'destroyMultiple'])->name('destroy.multiple');
-    });
-
     // CUADRE DE CAJA 
     Route::get('/cuadre-caja', [App\Http\Controllers\CuadreCajaController::class, 'index'])->name('cuadre-caja.index');
-
-    // PAGOS DE HABITACIÓN
-    Route::resource('pagos-habitacion', FactPagoHabController::class);
-    
-    // PAGOS DE PRODUCTOS
-    Route::resource('pagos-productos', FactPagoProdController::class);
-
-    Route::get('api/productos/{id}/precio', [FactPagoProdController::class, 'getPrecioProducto']);
-
-    /*
-    |----------------------------------------------------------------------
-    | ADMINISTRACIÓN - SOLO ADMINISTRADORES
-    |----------------------------------------------------------------------
-    */
-    
-    // TRABAJADORES
-    Route::resource('trabajadores', FactTrabajadorController::class)
-        ->parameters(['trabajadores' => 'dni']);
-    
-    // HORARIO TRABAJADORES
-    Route::resource('horarios', FactHorarioController::class);
-    Route::post('horarios/asignar-completo', [FactHorarioController::class, 'asignarHorarioCompleto'])->name('horarios.asignar-completo');
-    
-    /*
-    |----------------------------------------------------------------------
-    | PRODUCTOS - SOLO ADMINISTRADORES
-    |----------------------------------------------------------------------
-    */
 
     // PRODUCTOS BODEGA (Completo con ProductosBodegaController)
     Route::prefix('productos-bodega')->name('productos-bodega.')->group(function () {
@@ -311,6 +240,78 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('{id}/compra/{compraId}', [DimProductoHotelController::class, 'updateCompra'])->name('update-compra');
         Route::delete('{id}/compra/{compraId}', [DimProductoHotelController::class, 'destroyCompra'])->name('destroy-compra');
     });
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| RUTAS SOLO PARA ADMINISTRADORES
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    
+    /*
+    |----------------------------------------------------------------------
+    | GESTIÓN FINANCIERA - SOLO ADMINISTRADORES
+    |----------------------------------------------------------------------
+    */
+
+    // COMPROBANTES SUNAT
+    Route::prefix('sunat')->name('sunat.')->group(function () {
+        Route::get('/', [FactSunatController::class, 'index'])->name('index');
+        Route::get('create', [FactSunatController::class, 'create'])->name('create');
+        Route::post('/', [FactSunatController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [FactSunatController::class, 'edit'])->name('edit');
+        Route::put('{id}', [FactSunatController::class, 'update'])->name('update');
+        Route::delete('{id}', [FactSunatController::class, 'destroy'])->name('destroy');
+        
+        // Funcionalidades adicionales
+        Route::delete('multiple', [FactSunatController::class, 'destroyMultiple'])->name('destroy.multiple');
+        Route::get('{id}/archivo', [FactSunatController::class, 'showArchivo'])->name('archivo');
+        Route::get('{id}/archivo/download', [FactSunatController::class, 'downloadArchivo'])->name('archivo.download');
+    });
+
+    // INVERSIONES 
+    Route::prefix('inversiones')->name('inversiones.')->group(function () {
+        Route::get('/', [FactInversionController::class, 'index'])->name('index');
+        Route::get('create', [FactInversionController::class, 'create'])->name('create');
+        Route::post('/', [FactInversionController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [FactInversionController::class, 'edit'])->name('edit');
+        Route::put('{id}', [FactInversionController::class, 'update'])->name('update');
+        Route::delete('{id}', [FactInversionController::class, 'destroy'])->name('destroy');
+        
+        // Eliminación múltiple
+        Route::delete('multiple', [FactInversionController::class, 'destroyMultiple'])->name('destroy.multiple');
+    });
+
+    // PAGOS DE HABITACIÓN
+    Route::resource('pagos-habitacion', FactPagoHabController::class);
+    
+    // PAGOS DE PRODUCTOS
+    Route::resource('pagos-productos', FactPagoProdController::class);
+
+    Route::get('api/productos/{id}/precio', [FactPagoProdController::class, 'getPrecioProducto']);
+
+    /*
+    |----------------------------------------------------------------------
+    | ADMINISTRACIÓN - SOLO ADMINISTRADORES
+    |----------------------------------------------------------------------
+    */
+    
+    // TRABAJADORES
+    Route::resource('trabajadores', FactTrabajadorController::class)
+        ->parameters(['trabajadores' => 'dni']);
+    
+    // HORARIO TRABAJADORES
+    Route::resource('horarios', FactHorarioController::class);
+    Route::post('horarios/asignar-completo', [FactHorarioController::class, 'asignarHorarioCompleto'])->name('horarios.asignar-completo');
+    
+    /*
+    |----------------------------------------------------------------------
+    | PRODUCTOS - SOLO ADMINISTRADORES
+    |----------------------------------------------------------------------
+    */
     
     // COMPRAS INTERNAS (Para mantener compatibilidad con rutas existentes)
     Route::resource('compras-internas', FactCompraInternaController::class);

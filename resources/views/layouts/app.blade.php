@@ -225,8 +225,8 @@
                     </a>
                 </li>
                 
-                <!-- SECCIONES SOLO PARA ADMINISTRADORES -->
-                @if(Auth::user()->isAdmin())
+                <!-- SECCIONES PARA ADMINISTRADORES Y TRABAJADORES -->
+                @if(Auth::user()->isAdmin() || Auth::user()->isTrabajador())
                 
                 <!-- SECCIÓN FINANZAS -->
                 <span class="text-gray-500 font-bold text-xs section-title block">FINANZAS</span>
@@ -242,20 +242,6 @@
                     <a href="{{ route('gastos-fijos.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('gastos-fijos.*') ? 'selected-item' : '' }}">
                         <i class='bx bx-calendar mr-3 text-lg'></i>
                         <span class="text-sm">Gastos Fijos</span>
-                    </a>
-                </li>
-
-                <li class="menu-item group">
-                    <a href="{{ route('sunat.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('sunat.*') ? 'selected-item' : '' }}">
-                        <i class='bx bx-receipt mr-3 text-lg'></i>
-                        <span class="text-sm">SUNAT</span>
-                    </a>
-                </li>
-
-                <li class="menu-item group">
-                    <a href="{{ route('inversiones.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('inversiones.*') ? 'selected-item' : '' }}">
-                        <i class='bx bx-trending-up mr-3 text-lg'></i>
-                        <span class="text-sm">Inversiones</span>
                     </a>
                 </li>
 
@@ -280,6 +266,25 @@
                     <a href="{{ route('productos-hotel.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('productos-hotel.*') ? 'selected-item' : '' }}">
                         <i class='bx bx-building mr-3 text-lg'></i>
                         <span class="text-sm">Productos Hotel</span>
+                    </a>
+                </li>
+
+                @endif
+
+                <!-- SECCIONES SOLO PARA ADMINISTRADORES -->
+                @if(Auth::user()->isAdmin())
+
+                <li class="menu-item group">
+                    <a href="{{ route('sunat.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('sunat.*') ? 'selected-item' : '' }}">
+                        <i class='bx bx-receipt mr-3 text-lg'></i>
+                        <span class="text-sm">SUNAT</span>
+                    </a>
+                </li>
+
+                <li class="menu-item group">
+                    <a href="{{ route('inversiones.index') }}" class="flex font-semibold items-center py-2 px-4 text-gray-700 rounded-md sidebar-item {{ request()->routeIs('inversiones.*') ? 'selected-item' : '' }}">
+                        <i class='bx bx-trending-up mr-3 text-lg'></i>
+                        <span class="text-sm">Inversiones</span>
                     </a>
                 </li>
 
