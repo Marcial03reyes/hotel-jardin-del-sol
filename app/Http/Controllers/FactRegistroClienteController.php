@@ -101,9 +101,11 @@ class FactRegistroClienteController extends Controller
         $pago = FactPagoHab::where('id_estadia', $id)->first();
         $metodos = DimMetPago::orderBy('id_met_pago')->get();
         $habitaciones = [
-            201, 202, 203, 204, 205, 206, 207, 208, 209, 210,
-            301, 302, 303, 304, 305, 306, 307, 308, 309, 310,
-            401, 402, 403, 404, 405, 406, 407, 408, 409, 410
+            201, 202, 203, 204, 205, 206, 207,
+            301, 302, 303, 304, 305, 306, 307,
+            401, 402, 403, 404, 405, 406, 407, 408, 409,
+            501, 502, 503, 504, 505, 506, 507, 508, 509,
+            601, 602, 603, 604
         ];
 
         return view('registros.edit', compact('estadia', 'pago', 'metodos', 'habitaciones'));
@@ -114,9 +116,11 @@ class FactRegistroClienteController extends Controller
     {
         $metodos = DimMetPago::orderBy('id_met_pago')->get();
         $habitaciones = [
-            201, 202, 203, 204, 205, 206, 207, 208, 209, 210,
-            301, 302, 303, 304, 305, 306, 307, 308, 309, 310,
-            401, 402, 403, 404, 405, 406, 407, 408, 409, 410
+            201, 202, 203, 204, 205, 206, 207,
+            301, 302, 303, 304, 305, 306, 307,
+            401, 402, 403, 404, 405, 406, 407, 408, 409,
+            501, 502, 503, 504, 505, 506, 507, 508, 509,
+            601, 602, 603, 604
         ];
 
         return view('registros.create', compact('metodos', 'habitaciones'));
@@ -130,7 +134,7 @@ class FactRegistroClienteController extends Controller
             'hora_salida'   => 'nullable',    
             'fecha_salida' => 'nullable|date',       
             'fecha_ingreso' => 'required|date',
-            'habitacion'    => 'required|in:201,202,203,204,205,206,207,208,209,210,301,302,303,304,305,306,307,308,309,310,401,402,403,404,405,406,407,408,409,410', 
+            'habitacion'    => 'required|in:201,202,203,204,205,206,207,301,302,303,304,305,306,307,401,402,403,404,405,406,407,408,409,501,502,503,504,505,506,507,508,509,601,602,603,604', 
             'turno'         => 'required|in:0,1',
             'fecha_ingreso_real' => 'nullable|required_if:turno,1|date',
             'hora_ingreso_real' => 'nullable|required_if:turno,1',
@@ -205,7 +209,7 @@ class FactRegistroClienteController extends Controller
                 'hora_salida' => 'nullable', 
                 'fecha_salida' => 'nullable|date',            
                 'fecha_ingreso' => 'required|date',
-                'habitacion' => 'required|in:201,202,203,204,205,206,207,208,209,210,301,302,303,304,305,306,307,308,309,310,401,402,403,404,405,406,407,408,409,410', 
+                'habitacion' => 'required|in:201,202,203,204,205,206,207,301,302,303,304,305,306,307,401,402,403,404,405,406,407,408,409,501,502,503,504,505,506,507,508,509,601,602,603,604', 
                 'turno' => 'required|in:0,1',
                 'fecha_ingreso_real' => 'nullable|required_if:turno,1|date',
                 'hora_ingreso_real' => 'nullable|required_if:turno,1',
