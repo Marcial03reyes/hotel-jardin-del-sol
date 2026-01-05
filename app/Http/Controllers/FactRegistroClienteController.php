@@ -89,7 +89,8 @@ class FactRegistroClienteController extends Controller
                 'fr.fecha_ingreso_real',
                 'fr.hora_ingreso_real',                      
             )
-            ->orderByDesc('fr.id_estadia')
+            ->orderBy(DB::raw('COALESCE(fr.fecha_ingreso_real, fr.fecha_ingreso)'), 'desc')
+            ->orderBy(DB::raw('COALESCE(fr.hora_ingreso_real, fr.hora_ingreso)'), 'desc')
             ->get();
 
         return view('registros.index', compact('registros'));
@@ -334,9 +335,11 @@ class FactRegistroClienteController extends Controller
             $request->validate([
                 'doc_identidad' => 'required|string|max:20|unique:dim_registro_clientes,doc_identidad',
                 'nombre_apellido' => 'required|string|max:100|min:3',
-                'estado_civil' => 'nullable|string|max:20',
+                'estado_civil' => 'nullable|string|max:1|in:S,C,D,V',
                 'fecha_nacimiento' => 'nullable|date',
                 'lugar_nacimiento' => 'nullable|string|max:100',
+                'sexo' => 'nullable|string|max:1',              
+                'nacionalidad' => 'nullable|string|max:50', 
             ]);
 
             \Log::info('Validación pasó correctamente');
@@ -347,6 +350,8 @@ class FactRegistroClienteController extends Controller
             $cliente->estado_civil = $request->input('estado_civil');
             $cliente->fecha_nacimiento = $request->input('fecha_nacimiento');
             $cliente->lugar_nacimiento = $request->input('lugar_nacimiento');
+            $cliente->sexo = $request->input('sexo');                    // ← AGREGAR
+            $cliente->nacionalidad = $request->input('nacionalidad'); 
             $cliente->save();
 
             return response()->json([
@@ -407,16 +412,27 @@ class FactRegistroClienteController extends Controller
         ]);
     }
 
+    private function getEstadoCivilCompleto($inicial)
+    {
+        $estados = [
+            'S' => 'Soltero',
+            'C' => 'Casado',
+            'D' => 'Divorciado', 
+            'V' => 'Viudo'
+        ];
+        return $estados[$inicial] ?? $inicial;
+    }
+
     /**
      * EXPORTAR A EXCEL CON FILTROS
      */
     public function exportExcel(Request $request)
     {
         $registros = $this->getFilteredData($request);
-        
+
         $filename = 'libro_huespedes.csv';
         $headers = [
-            'Content-Type' => 'text/csv',
+            'Content-Type' => 'text/csv; charset=UTF-8',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
         
@@ -427,9 +443,9 @@ class FactRegistroClienteController extends Controller
             fputcsv($file, [
                 'Nro', 'Nombre y Apellidos', 'Sexo', 'Edad', 'Fecha Nac.',
                 'Lugar Nac.', 'Nacionalidad', 'Documento', 'DOC.NRO',
-                'Estado Civil', 'Profesión', 'Ciudad Proc.', 'Ciudad Dest.',
-                'Motivo Viaje', 'N° Hab.', 'Fecha Ingreso', 'Hora Ingreso',
-                'Fecha Salida', 'Hora Salida', 'Turno', 'Método Pago', 'Monto'
+                'Estado Civil', 'Profesion', 'Ciudad Proc.', 'Ciudad Dest.',
+                'Motivo Viaje', 'No Hab.', 'Fecha Ingreso', 'Hora Ingreso',
+                'Fecha Salida', 'Hora Salida', 'Turno', 'Metodo Pago', 'Monto'
             ]);
             
             // Datos
@@ -438,14 +454,14 @@ class FactRegistroClienteController extends Controller
                 fputcsv($file, [
                     $contador++,
                     $registro->nombre_apellido,
-                    $registro->sexo,
+                    $registro->sexo == 'M' ? 'Masculino' : ($registro->sexo == 'F' ? 'Femenino' : $registro->sexo),
                     $registro->fecha_nacimiento ? \Carbon\Carbon::parse($registro->fecha_nacimiento)->age : '',
                     $registro->fecha_nacimiento ? \Carbon\Carbon::parse($registro->fecha_nacimiento)->format('d/m/Y') : '',
                     $registro->lugar_nacimiento,
                     $registro->nacionalidad,
                     $registro->doc_identidad,
                     preg_replace('/[^0-9]/', '', $registro->doc_identidad),
-                    $registro->estado_civil,
+                    $this->getEstadoCivilCompleto($registro->estado_civil),
                     $registro->profesion_ocupacion,
                     $registro->ciudad_procedencia,
                     $registro->ciudad_destino,
@@ -455,7 +471,7 @@ class FactRegistroClienteController extends Controller
                     $registro->hora_ingreso_real ?: $registro->hora_ingreso,
                     $registro->fecha_salida,
                     $registro->hora_salida,
-                    $registro->turno == 0 ? 'DÍA' : 'NOCHE',
+                    $registro->turno == 0 ? 'DIA' : 'NOCHE',
                     $registro->metodo_pago,
                     $registro->precio
                 ]);
@@ -567,7 +583,8 @@ class FactRegistroClienteController extends Controller
                 'fr.fecha_ingreso_real',
                 'fr.hora_ingreso_real',                      
             )
-            ->orderByDesc('fr.id_estadia')
+            ->orderBy(DB::raw('COALESCE(fr.fecha_ingreso_real, fr.fecha_ingreso)'), 'desc')
+            ->orderBy(DB::raw('COALESCE(fr.hora_ingreso_real, fr.hora_ingreso)'), 'desc')
             ->get();
     }
 }
