@@ -288,10 +288,10 @@
                             </label>
                             <select name="estado_civil" class="input-field w-full px-4 py-3 border border-gray-300 rounded-lg transition-all">
                                 <option value="">Seleccionar</option>
-                                <option value="Soltero" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'Soltero' ? 'selected' : '' }}>S</option>
-                                <option value="Casado" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'Casado' ? 'selected' : '' }}>C</option>
-                                <option value="Divorciado" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'Divorciado' ? 'selected' : '' }}>D</option>
-                                <option value="Viudo" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'Viudo' ? 'selected' : '' }}>V</option>
+                                <option value="S" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'S' ? 'selected' : '' }}>Soltero</option>
+                                <option value="C" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'C' ? 'selected' : '' }}>Casado</option>
+                                <option value="D" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'D' ? 'selected' : '' }}>Divorciado</option>
+                                <option value="V" {{ old('estado_civil', $estadia->cliente->estado_civil ?? '') == 'V' ? 'selected' : '' }}>Viudo</option> ? 'selected' : '' }}>V</option>
                             </select>
                         </div>
                         
@@ -601,6 +601,29 @@ document.addEventListener('DOMContentLoaded', function() {
             horaRealInput.value = '';
         }
     }
+
+    // Función para convertir a mayúsculas automáticamente
+    function convertToUppercase(element) {
+        element.addEventListener('input', function() {
+            const start = this.selectionStart;
+            const end = this.selectionEnd;
+            this.value = this.value.toUpperCase();
+            this.setSelectionRange(start, end);
+        });
+    }
+
+    // Aplicar a campos de texto relevantes
+    const fieldsToUppercase = [
+        'input[name="doc_identidad"]',
+        'input[name="nacionalidad"]',
+        'input[name="lugar_nacimiento"]'
+        // Agregar más campos según necesites
+    ];
+
+    fieldsToUppercase.forEach(selector => {
+        const field = document.querySelector(selector);
+        if (field) convertToUppercase(field);
+    });
     
     turnoRadios.forEach(radio => {
         radio.addEventListener('change', function() {
