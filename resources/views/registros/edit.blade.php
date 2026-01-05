@@ -247,7 +247,7 @@
                             Nombre y Apellidos
                         </label>
                         <input type="text" id="nombre_apellido_display"
-                            value="{{ $estadia->cliente->nombre_apellido ?? 'No disponible' }}"
+                            value="{{ strtoupper($estadia->cliente->nombre_apellido ?? 'No disponible') }}"
                             class="input-field disabled-field w-full px-4 py-3 border border-gray-300 rounded-lg transition-all"
                             readonly>
                         <p class="text-xs text-gray-500 mt-1">
