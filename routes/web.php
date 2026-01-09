@@ -241,6 +241,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('{id}/compra/{compraId}', [DimProductoHotelController::class, 'destroyCompra'])->name('destroy-compra');
     });
 
+    // PAGOS DE PRODUCTOS
+    Route::resource('pagos-productos', FactPagoProdController::class);
+
 });
 
 /*
@@ -287,9 +290,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // PAGOS DE HABITACIÓN
     Route::resource('pagos-habitacion', FactPagoHabController::class);
-    
-    // PAGOS DE PRODUCTOS
-    Route::resource('pagos-productos', FactPagoProdController::class);
 
     Route::get('api/productos/{id}/precio', [FactPagoProdController::class, 'getPrecioProducto']);
 

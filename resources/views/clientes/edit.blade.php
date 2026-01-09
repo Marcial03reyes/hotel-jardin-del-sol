@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Formatear automáticamente el nombre (primera letra mayúscula)
+    // Formatear automáticamente el nombre 
     nombreInput.addEventListener('blur', function() {
         let value = this.value.trim();
         if (value) {
