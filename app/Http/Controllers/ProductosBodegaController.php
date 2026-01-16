@@ -36,17 +36,20 @@ class ProductosBodegaController extends Controller
                     WHERE id_estadia IS NULL
                     GROUP BY id_prod_bod
                 ) as ventas'), 'dpb.id_prod_bod', '=', 'ventas.id_prod_bod')
+
                 ->select(
-                    'dpb.id_prod_bod',
-                    'dpb.nombre',
-                    'dpb.precio_actual',
-                    DB::raw('COALESCE(compras.unidades_compradas, 0) as unidades_compradas'),
-                    DB::raw('COALESCE(ventas.unidades_vendidas, 0) as unidades_vendidas'),
-                    DB::raw('COALESCE(compras.unidades_compradas, 0) - COALESCE(ventas.unidades_vendidas, 0) as stock'),
-                    DB::raw('COALESCE(compras.inversion_total, 0) as inversion_total'),
-                    DB::raw('COALESCE(compras.total_compras, 0) as total_compras'),
-                    'compras.ultima_compra'
+                'dpb.id_prod_bod',
+                'dpb.nombre',
+                'dpb.precio_actual',
+                'dpb.stock_inicial',  // ← AGREGAR ESTA LÍNEA
+                DB::raw('COALESCE(compras.unidades_compradas, 0) as unidades_compradas'),
+                DB::raw('COALESCE(ventas.unidades_vendidas, 0) as unidades_vendidas'),
+                DB::raw('dpb.stock_inicial + COALESCE(compras.unidades_compradas, 0) - COALESCE(ventas.unidades_vendidas, 0) as stock'),
+                DB::raw('COALESCE(compras.inversion_total, 0) as inversion_total'),
+                DB::raw('COALESCE(compras.total_compras, 0) as total_compras'),
+                'compras.ultima_compra'
                 )
+
                 ->orderBy('dpb.nombre')
                 ->get();
             
@@ -99,7 +102,7 @@ class ProductosBodegaController extends Controller
             $ingresosTotales = $ventas->ingresos_totales ?? 0;
             
             // Stock actual
-            $stockActual = $totalComprado - $totalVendido;
+            $stockActual = $producto->stock_inicial + $totalComprado - $totalVendido;
             
             // === ROTACIÓN MENSUAL MEJORADA (Días que durará el stock) ===
             // Inicializar la variable
@@ -359,11 +362,21 @@ class ProductosBodegaController extends Controller
                 'string',
                 'max:50',
                 'unique:dim_productos_bodega,nombre'
+            ],
+            'stock_inicial' => [  
+                'required',
+                'integer',
+                'min:0',
+                'max:9999'
             ]
         ], [
             'nombre.required' => 'El nombre del producto es obligatorio',
             'nombre.max' => 'El nombre no puede exceder 50 caracteres',
-            'nombre.unique' => 'Ya existe un producto con este nombre'
+            'nombre.unique' => 'Ya existe un producto con este nombre',
+            'stock_inicial.required' => 'El stock inicial es obligatorio',  
+            'stock_inicial.integer' => 'El stock inicial debe ser un número entero', 
+            'stock_inicial.min' => 'El stock inicial no puede ser negativo',  
+            'stock_inicial.max' => 'El stock inicial no puede exceder 9999'  
         ]);
 
         if ($validator->fails()) {
@@ -376,7 +389,8 @@ class ProductosBodegaController extends Controller
             // Crear el producto usando el modelo con $fillable
             $producto = DimProductoBodega::create([
                 'nombre' => trim($request->nombre),
-                'precio_actual' => $request->precio_actual
+                'precio_actual' => $request->precio_actual,
+                'stock_inicial' => $request->stock_inicial 
             ]);
 
             return redirect()
@@ -572,6 +586,12 @@ class ProductosBodegaController extends Controller
                 'numeric',
                 'min:0.01',
                 'max:9999.99'
+            ],
+            'stock_inicial' => [  
+                'required',
+                'integer',
+                'min:0',
+                'max:9999'
             ]
         ], [
             'nombre.required' => 'El nombre del producto es obligatorio',
@@ -580,7 +600,11 @@ class ProductosBodegaController extends Controller
             'precio_actual.required' => 'El precio es obligatorio',
             'precio_actual.numeric' => 'El precio debe ser un número válido',
             'precio_actual.min' => 'El precio debe ser mayor a 0',
-            'precio_actual.max' => 'El precio no puede exceder S/ 9,999.99'
+            'precio_actual.max' => 'El precio no puede exceder S/ 9,999.99',
+            'stock_inicial.required' => 'El stock inicial es obligatorio',        
+            'stock_inicial.integer' => 'El stock inicial debe ser un número entero',  
+            'stock_inicial.min' => 'El stock inicial no puede ser negativo',      
+            'stock_inicial.max' => 'El stock inicial no puede exceder 9999'       
         ]);
 
         if ($validator->fails()) {
@@ -593,7 +617,8 @@ class ProductosBodegaController extends Controller
             // Actualizar el producto
             $producto->update([
                 'nombre' => trim($request->nombre),
-                'precio_actual' => $request->precio_actual
+                'precio_actual' => $request->precio_actual,
+                'stock_inicial' => $request->stock_inicial 
             ]);
 
             return redirect()

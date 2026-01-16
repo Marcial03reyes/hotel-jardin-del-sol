@@ -23,6 +23,7 @@ use App\Http\Controllers\FactInversionController;
 use App\Http\Controllers\CuadreCajaController;
 use App\Http\Controllers\GastosFijosController;
 use App\Http\Controllers\FactGastoGeneralController;
+use App\Http\Controllers\PenalidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -200,7 +201,7 @@ Route::middleware('auth')->group(function () {
         Route::get('{id}/edit', [ProductosBodegaController::class, 'editProducto'])->name('edit-producto');
         Route::put('{id}', [ProductosBodegaController::class, 'updateProducto'])->name('update-producto');
         Route::delete('{id}', [ProductosBodegaController::class, 'destroyProducto'])->name('destroy-producto');
-        
+
         // Historial de compras de un producto
         Route::get('{id}/historial', [ProductosBodegaController::class, 'historial'])->name('historial');
         
@@ -243,6 +244,14 @@ Route::middleware('auth')->group(function () {
 
     // PAGOS DE PRODUCTOS
     Route::resource('pagos-productos', FactPagoProdController::class);
+
+    // PAGO DE PENALIZACIONES
+    Route::prefix('penalizaciones')->name('penalizaciones.')->group(function () {
+    Route::get('/metodos-pago', [PenalidadController::class, 'getMetodosPago'])->name('metodos-pago');
+    Route::get('/{id_estadia}', [PenalidadController::class, 'index'])->name('index');
+    Route::post('/{id_estadia}', [PenalidadController::class, 'store'])->name('store');
+    Route::delete('/{id_penalidad}', [PenalidadController::class, 'destroy'])->name('destroy');
+});
 
 });
 

@@ -113,10 +113,10 @@
         }
         
         .notification-tab > .active {
-            border-bottom-color: #88A6D3;
-            color: #88A6D3;
+            border-bottom-color: #E98672;  
+            color: #E98672;
         }
-        
+
         /* Efectos adicionales */
         .hotel-logo {
             background: linear-gradient(135deg, #E98672, #C85A47);
