@@ -28,10 +28,11 @@ class ProductosBodegaController extends Controller
                     FROM fact_compra_bodega
                     GROUP BY id_prod_bod
                 ) as compras'), 'dpb.id_prod_bod', '=', 'compras.id_prod_bod')
+                
                 ->leftJoin(DB::raw('(
                     SELECT 
                         id_prod_bod,
-                        SUM(cantidad) as unidades_vendidas
+                        SUM(CASE WHEN cantidad > 0 THEN cantidad ELSE 0 END) as unidades_vendidas
                     FROM fact_pago_prod
                     WHERE id_estadia IS NULL
                     GROUP BY id_prod_bod
@@ -41,7 +42,7 @@ class ProductosBodegaController extends Controller
                 'dpb.id_prod_bod',
                 'dpb.nombre',
                 'dpb.precio_actual',
-                'dpb.stock_inicial',  // ← AGREGAR ESTA LÍNEA
+                'dpb.stock_inicial',  
                 DB::raw('COALESCE(compras.unidades_compradas, 0) as unidades_compradas'),
                 DB::raw('COALESCE(ventas.unidades_vendidas, 0) as unidades_vendidas'),
                 DB::raw('dpb.stock_inicial + COALESCE(compras.unidades_compradas, 0) - COALESCE(ventas.unidades_vendidas, 0) as stock'),
@@ -91,7 +92,7 @@ class ProductosBodegaController extends Controller
                 ->where('id_prod_bod', $id)
                 ->whereNull('id_estadia')
                 ->selectRaw('
-                    SUM(cantidad) as total_vendido,
+                    SUM(CASE WHEN cantidad > 0 THEN cantidad ELSE 0 END) as total_vendido,
                     SUM(cantidad * precio_unitario) as ingresos_totales,
                     MIN(fecha_venta) as primera_venta,
                     MAX(fecha_venta) as ultima_venta
@@ -113,13 +114,13 @@ class ProductosBodegaController extends Controller
                 ->where('id_prod_bod', $id)
                 ->whereNull('id_estadia')
                 ->where('fecha_venta', '>=', now()->subDays(30))
-                ->sum('cantidad');
+                ->where('cantidad', '>', 0)->sum('cantidad');
             
             $ventasUltimos90Dias = DB::table('fact_pago_prod')
                 ->where('id_prod_bod', $id)
                 ->whereNull('id_estadia')
                 ->where('fecha_venta', '>=', now()->subDays(90))
-                ->sum('cantidad');
+                ->where('cantidad', '>', 0)->sum('cantidad');
             
             // Calcular días de cobertura con lógica mejorada
             if ($stockActual == 0) {
@@ -156,7 +157,7 @@ class ProductosBodegaController extends Controller
                 ->whereNull('id_estadia')
                 ->where('fecha_venta', '>=', $hace3Meses)
                 ->selectRaw('
-                    SUM(cantidad) as cantidad_vendida,
+                    SUM(CASE WHEN cantidad > 0 THEN cantidad ELSE 0 END) as cantidad_vendida,
                     SUM(cantidad * precio_unitario) as ingresos
                 ')
                 ->first();

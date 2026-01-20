@@ -267,10 +267,13 @@
                             <div class="relative">
                                 <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">S/</span>
                                 <input name="precio_unitario" id="precio_unitario" type="number" step="0.01" min="0" readonly
-                                       class="input-field w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50" 
-                                       placeholder="0.00">
+                                    class="input-field w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50" 
+                                    placeholder="0.00">
                             </div>
+
                             <p class="text-xs text-gray-500 mt-1">Se completa automáticamente</p>
+
+                            <input type="hidden" name="monto_total" id="monto_total_hidden" value="0">
                         </div>
                     </div>
 
@@ -341,7 +344,7 @@
                                 </label>
                                 <div class="relative">
                                     <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">S/</span>
-                                    <input name="monto_pago" type="number" step="0.01" min="0"
+                                    <input name="monto_individual" type="number" step="0.01" min="0"
                                         class="input-field w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg monto-pago" 
                                         placeholder="0.00" required>
                                 </div>
@@ -455,13 +458,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // === CALCULAR TOTAL VENTA ===
     function calcularTotalVenta() {
-        const precio = parseFloat(precioInput.value) || 0;
-        const cantidad = parseInt(cantidadInput.value) || 0;
-        const total = precio * cantidad;
-        totalSpan.textContent = `S/ ${total.toFixed(2)}`;
-        totalVentaRef.textContent = `S/ ${total.toFixed(2)}`;
-        calcularTotalesPago();
+    const precio = parseFloat(precioInput.value) || 0;
+    const cantidad = parseInt(cantidadInput.value) || 0;
+    const total = precio * cantidad;
+    totalSpan.textContent = `S/ ${total.toFixed(2)}`;
+    totalVentaRef.textContent = `S/ ${total.toFixed(2)}`;
+    
+    // ✅ AGREGAR: Actualizar el campo monto_total
+    const montoTotalHidden = document.getElementById('monto_total_hidden');
+    if (montoTotalHidden) {
+        montoTotalHidden.value = total.toFixed(2);
     }
+    
+    calcularTotalesPago();
+}
 
     productoSelect.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
@@ -708,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        const esConsumoInterno = document.querySelector('input[name="tipo_registro"]:checked')?.value === 'consumo_interno';
+        const esConsumoInterno = consumoInternoCheck.checked;
         if (pagosValidos === 0 && !esConsumoInterno) {
             e.preventDefault();
             alert('⚠️ Debe especificar al menos un método de pago');
